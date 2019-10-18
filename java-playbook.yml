@@ -1,0 +1,23 @@
+---
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+    - name: download java
+      command: wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/13+33/5b8a42f3905b406298b72d750b6919f6/jdk-13_linux-x64_bin.tar.gz
+    - name: create directory for java
+      file:
+        path: /usr/lib/jvm
+        state: directory
+    - name: unarchive java
+      unarchive:
+        src: ~/jdk-13_linux-x64_bin.tar.gz
+        dest: /usr/lib/jvm
+    - name: Add Java to $PATH
+      command: echo ${PATH}:/usr/lib/jvm/jdk-13/bin > /etc/environment
+    - name: Add $JAVA_HOME to environment
+      command: echo JAVA_HOME="/usr/lib/jvm/jdk-13" >> /etc/environment
+    - name: Inform UBUNTU about Java location
+      command: sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-13/bin/java" 0 && sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-13/bin/javac" 0 && sudo update-alternatives --set java /usr/lib/jvm/jdk-13/bin/java && sudo update-alternatives --set javac /usr/lib/jvm/jdk-13/bin/javac
