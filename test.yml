@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+    - name: echo 1
+      command: touch ~/test_ansible
