@@ -5,5 +5,5 @@
     max_clients: 200
   remote_user: root
   roles:
-    # - java_install
+    - java_install
     - wildfly_install
