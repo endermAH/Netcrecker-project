@@ -1,0 +1,39 @@
+---
+  
+- name: Download java
+  get_url:
+    url: https://download.oracle.com/otn-pub/java/jdk/13+33/5b8a42f3905b406298b72d750b6919f6/jdk-13_linux-x64_bin.tar.gz
+    headers:
+      Cookie: oraclelicense=accept-securebackup-cookie
+    validate_certs: no
+    dest: '~'
+- name: Create directory for java
+  file:
+    path: /usr/lib/jvm
+    state: directory
+- name: Unarchive java
+  unarchive:
+    src: ~/jdk-13_linux-x64_bin.tar.gz
+    dest: /usr/lib/jvm
+- name: Add Java to $PATH
+  command: echo ${PATH}:/usr/lib/jvm/jdk-13/bin > /etc/environment
+- name: Add $JAVA_HOME to environment
+  command: 'echo JAVA_HOME="/usr/lib/jvm/jdk-13" >> /etc/environment'
+- name: Inform UBUNTU about Java location [1]
+  alternatives:
+    link: /usr/bin/java
+    name: java
+    path: /usr/lib/jvm/jdk-13/bin/java
+- name: Inform UBUNTU about Java location [2]
+  alternatives:
+    link: /usr/bin/javac
+    name: javac
+    path: /usr/lib/jvm/jdk-13/bin/javac
+- name: Inform UBUNTU about Java location [3]
+  alternatives:
+    name: java
+    path: /usr/lib/jvm/jdk-13/bin/java
+- name: Inform UBUNTU about Java location [4]
+  alternatives:
+    name: javac
+    path: /usr/lib/jvm/jdk-13/bin/javac
