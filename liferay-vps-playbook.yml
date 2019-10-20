@@ -1,5 +1,5 @@
 ---
-- hosts: 178.62.5.170
+- hosts: webservers
   vars:
     http_port: 80
     max_clients: 200
