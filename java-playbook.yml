@@ -26,10 +26,20 @@
     - name: Add $JAVA_HOME to environment
       command: 'echo JAVA_HOME="/usr/lib/jvm/jdk-13" >> /etc/environment'
     - name: Inform UBUNTU about Java location [1]
-      command: 'sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-13/bin/java" 0'
+      alternatives:
+        link: /usr/bin/java
+        name: java
+        path: /usr/lib/jvm/jdk-13/bin/java
     - name: Inform UBUNTU about Java location [2]
-    command: 'sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-13/bin/javac" 0'
+      alternatives:
+        link: /usr/bin/javac
+        name: javac
+        path: /usr/lib/jvm/jdk-13/bin/javac
     - name: Inform UBUNTU about Java location [3]
-      command: 'sudo update-alternatives --set java /usr/lib/jvm/jdk-13/bin/java'
+      alternatives:
+        name: java
+        path: /usr/lib/jvm/jdk-13/bin/java
     - name: Inform UBUNTU about Java location [4]
-      command: 'sudo update-alternatives --set javac /usr/lib/jvm/jdk-13/bin/javac'
+      alternatives:
+        name: javac
+        path: /usr/lib/jvm/jdk-13/bin/javac
