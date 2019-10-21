@@ -5,14 +5,20 @@
     max_clients: 200
   remote_user: root
   tasks:
-    - name: Replacement to <any-address\>
-      lineinfile:
-        path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
-        line: '<any-address/>'
-        regexp: '^            <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>'
+    # - name: Replacement to <any-address\>
+    #   lineinfile:
+    #     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
+    #     line: '<any-address/>'
+    #     regexp: '^            <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>'
     # - name: Replacement to <any-address\>
     #   lineinfile:
     #     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
     #     line: '<any-address/>'
     #     regexp: '^<inet-address value="${jboss.bind.address:127.0.0.1}"/>'
     #     insertbefore: BOF
+    - name: test3
+      xml:
+        path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
+        xpath: /xml/server/interfaces/interface[@name='management']
+        set_children:
+          children: any-address
