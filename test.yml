@@ -27,3 +27,5 @@
         path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
         regexp: '<inet-address'
         line: '            <any-address/>'
+    - name: Start WildFly
+      command: /opt/wildfly-11.0.0.Final/bin/./standalone.sh
