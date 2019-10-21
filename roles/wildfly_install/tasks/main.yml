@@ -1,10 +1,7 @@
 ---
 
-- name: Download WildFly
-  get_url:
-    url: https://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz
-    dest: '~'
-- name: Unzip WildFly
+- name: Download & Unzip WildFly
   unarchive:
-    src: ~/wildfly-11.0.0.Final.tar.gz
+    remote_src: yes
+    src: https://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz
     dest: /opt
