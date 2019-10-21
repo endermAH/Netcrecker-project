@@ -25,5 +25,5 @@
     - name: test test
       lineinfile:
         path: ~/test
-        regexp: '^1'
-        line: Hello world
+        regexp: '^Hello world'
+        line: Hi :(
