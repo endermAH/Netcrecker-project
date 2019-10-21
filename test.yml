@@ -22,8 +22,8 @@
     #     xpath: /server
     #     set_children:
     #     - children: any-address
-    - name: test test
+    - name: test config
       lineinfile:
-        path: ~/test
+        path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
         regexp: '<inet-address'
         line: '            <any-address/>'
