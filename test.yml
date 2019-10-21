@@ -16,9 +16,14 @@
     #     line: '<any-address/>'
     #     regexp: '^<inet-address value="${jboss.bind.address:127.0.0.1}"/>'
     #     insertbefore: BOF
-    - name: test3
-      xml:
-        path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
-        xpath: /server
-        set_children:
-        - children: any-address
+    # - name: test3
+    #   xml:
+    #     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
+    #     xpath: /server
+    #     set_children:
+    #     - children: any-address
+    - name: test test
+      lineinfile:
+        path: ~/test
+        regexp: '^1'
+        line: Hello world
