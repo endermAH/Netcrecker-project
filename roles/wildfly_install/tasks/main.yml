@@ -5,17 +5,15 @@
     remote_src: yes
     src: https://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz
     dest: /opt
-- name: Replacement to <any-address\>
+- name: Replacement to <any-address\> [1]
   lineinfile:
     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
-    line: '<any-address/>'
-    regexp: '^<inet-address value="${jboss.bind.address.management:127.0.0.1}"/>'
-    insertbefore: BOF
-- name: Replacement to <any-address\>
+    regexp: '<inet-address'
+    line: '            <any-address/>'
+- name: Replacement to <any-address\> [2]
   lineinfile:
     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
-    line: '<any-address/>'
-    regexp: '^<inet-address value="${jboss.bind.address:0.0.0.0}"/>'
-    insertbefore: BOF
+    regexp: '<inet-address'
+    line: '            <any-address/>'
 - name: Start WildFly
   command: /opt/wildfly-11.0.0.Final/bin/./standalone.sh
