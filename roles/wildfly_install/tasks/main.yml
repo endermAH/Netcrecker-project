@@ -6,11 +6,14 @@
     src: https://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz
     dest: /opt
 - name: Replacement to <any-address\>
+  lineinfile:
     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
     line: '<any-address/>'
     regexp: '<inet-address value="${jboss.bind.address.management:127.0.0.1}"/>'
 - name: Replacement to <any-address\>
+  lineinfile:
     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
     line: '<any-address/>'
     regexp: '<inet-address value="${jboss.bind.address:0.0.0.0}"/>'
-    
+- name: Start WildFly
+  command: /opt/wildfly-11.0.0.Final/bin/./standalone.sh
