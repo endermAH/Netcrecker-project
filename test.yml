@@ -44,7 +44,7 @@
         dest: /opt/wildfly-11.0.0.Final/bin
         remote_src: yes
     - name: Change exec acess to .sh files
-      command: chmod +x /opt/wildfly-11.0.0.Final/bin/*.sh
+      command: sh -c 'chmod +x /opt/wildfly-11.0.0.Final/bin/*.sh'
     - name: Copy .service unit
       copy:
         src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.service
