@@ -41,6 +41,7 @@
     - name: Inform UBUNTU about WildFly location [1]
       alternatives:
         link: /opt/wildfly
+        name: wildfly
         path: /opt/wildfly-11.0.0.Final
     - name: Copy start script
       copy:
