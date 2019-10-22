@@ -41,7 +41,7 @@
     - name: Copy start script
       copy:
         src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/launch.sh
-        dest: /opt/wildfly/bin
+        dest: /opt/wildfly-11.0.0.Final/bin
         remote_src: yes
     - name: Change exec acess to .sh files
       command: chmod +x /opt/wildfly/bin/*.sh
