@@ -22,10 +22,34 @@
     #     xpath: /server
     #     set_children:
     #     - children: any-address
-    - name: test config
-      lineinfile:
-        path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
-        regexp: '<inet-address'
-        line: '            <any-address/>'
+    # - name: test config
+    #   lineinfile:
+    #     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
+    #     regexp: '<inet-address'
+    #     line: '            <any-address/>'
+    # - name: Start WildFly
+    #   command: /opt/wildfly-11.0.0.Final/bin/standalone.sh
+    - name: Copy config
+      copy:
+        src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.conf
+        dest: /etc/wildfly
+    - name: Create a directory for launch.sh FILE
+      file:
+        path: /etc/wildfly/bin
+        state: directory
+    - name: Copy start script
+      copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/launch.sh
+        dest: /opt/wildfly/bin
+    - name: Change exec acess to .sh files
+      command: chmod +x /opt/wildfly/bin/*.sh
+    - name: Copy .service unit
+      copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+        dest: /etc/systemd/system/
+    - name: restart demon services
+      command: systemctl daemon-reload
     - name: Start WildFly
-      command: /opt/wildfly-11.0.0.Final/bin/./standalone.sh
+      command: systemctl start wildfly
+    - name: Status of WildFly
+      command: systemctl status wildfly
