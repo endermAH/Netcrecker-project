@@ -29,25 +29,25 @@
     #     line: '            <any-address/>'
     # - name: Start WildFly
     #   command: /opt/wildfly-11.0.0.Final/bin/standalone.sh
-    - name: Copy config
-      copy:
-        src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.conf
-        dest: /etc/wildfly
-        remote_src: yes
-    - name: Create a directory for launch.sh FILE
-      file:
-        path: /etc/wildfly/bin
-        state: directory
+    # - name: Copy config
+    #   copy:
+    #     src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.conf
+    #     dest: /etc/wildfly
+    #     remote_src: yes
+    # - name: Create a directory for launch.sh FILE
+    #   file:
+    #     path: /etc/wildfly/bin
+    #     state: directory
     - name: Copy start script
       copy:
-        src: /opt/wildfly/docs/contrib/scripts/systemd/launch.sh
+        src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/launch.sh
         dest: /opt/wildfly/bin
         remote_src: yes
     - name: Change exec acess to .sh files
       command: chmod +x /opt/wildfly/bin/*.sh
     - name: Copy .service unit
       copy:
-        src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+        src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.service
         dest: /etc/systemd/system/
         remote_src: yes
     - name: restart demon services
