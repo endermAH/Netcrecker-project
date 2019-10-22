@@ -5,6 +5,11 @@
     remote_src: yes
     src: https://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz
     dest: /opt
+- name: Create a symbolic link
+  file:
+    src: /opt/wildfly-11.0.0.Final
+    dest: /opt/wildfly
+    state: link
 - name: Replacement to <any-address\> [1]
   lineinfile:
     path: /opt/wildfly-11.0.0.Final/standalone/configuration/standalone.xml
@@ -23,20 +28,23 @@
   copy:
     src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.conf
     dest: /etc/wildfly
+    remote_src: yes
 - name: Create a directory for launch.sh FILE
   file:
     path: /etc/wildfly/bin
     state: directory
 - name: Copy start script
   copy:
-    src: /opt/wildfly/docs/contrib/scripts/systemd/launch.sh
-    dest: /opt/wildfly/bin
+    src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/launch.sh
+    dest: /opt/wildfly-11.0.0.Final/bin
+    remote_src: yes
 - name: Change exec acess to .sh files
-  command: chmod +x /opt/wildfly/bin/*.sh
+  command: chmod +x /opt/wildfly-11.0.0.Final/bin/*.sh
 - name: Copy .service unit
   copy:
-    src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+    src: /opt/wildfly-11.0.0.Final/docs/contrib/scripts/systemd/wildfly.service
     dest: /etc/systemd/system/
+    remote_src: yes
 - name: restart demon services
   command: systemctl daemon-reload
 - name: Start WildFly
