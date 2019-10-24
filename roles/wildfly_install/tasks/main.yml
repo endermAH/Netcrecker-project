@@ -3,7 +3,7 @@
 - name: Download & Unzip WildFly
   unarchive:
     remote_src: yes
-    src: https://download.jboss.org/wildfly/17.0.1.Final/wildfly-17.0.1.Final.zip
+    src: https://download.jboss.org/wildfly/17.0.1.Final/wildfly-17.0.1.Final.tar.gz
     dest: /opt
 - name: Create a symbolic link
   file:
