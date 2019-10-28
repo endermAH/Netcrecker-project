@@ -1,23 +1,19 @@
 ---
 
-# - name: Download java
-#   get_url:
-#     url: https://download.oracle.com/otn/java/jdk/8u231-b11/5b13a193868b4bf28bcb45c792fce896/jdk-8u231-linux-arm32-vfp-hflt.tar.gz
-#     headers:
-#       Cookie: oraclelicense=accept-securebackup-cookie
-#     validate_certs: no
-#     dest: '~'
-
-- name: Download Java
-  command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
-
+- name: Download java
+  get_url:
+    url: {{ download_url }}
+    headers:
+      Cookie: oraclelicense=accept-securebackup-cookie
+    validate_certs: no
+    dest: {{ download_folder }}
 - name: Create directory for java
   file:
-    path: /usr/lib/jvm
+    path: {{ java_name }}
     state: directory
 - name: Unarchive java
   unarchive:
-    src: ~/jdk-13_linux-x64_bin.tar.gz
+    src: {{ java_archive }}
     dest: /usr/lib/jvm
 - name: Add Java to $PATH
   command: echo ${PATH}:/usr/lib/jvm/jdk-13/bin > /etc/environment
