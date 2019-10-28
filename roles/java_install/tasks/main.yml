@@ -2,19 +2,19 @@
 
 - name: Download java
   get_url:
-    url: {{ download_url }}
+    url: "{{ download_url }}"
     headers:
       Cookie: oraclelicense=accept-securebackup-cookie
     validate_certs: no
-    dest: {{ download_folder }}
+    dest: "{{ download_folder }}"
 - name: Create directory for java
   file:
-    path: {{ java_name }}
+    path: "{{ java_name }}"
     state: directory
 - name: Unarchive java
   unarchive:
-    src: {{ java_archive }}
-    dest: {{ java_name }}
+    src: "{{ java_archive }}"
+    dest: "{{ java_name }}"
 - name: Add Java to $PATH
   command: echo ${PATH}:{{ java_name }}/bin > /etc/environment
 - name: Add $JAVA_HOME to environment
