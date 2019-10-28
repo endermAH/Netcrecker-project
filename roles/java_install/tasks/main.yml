@@ -14,26 +14,26 @@
 - name: Unarchive java
   unarchive:
     src: {{ java_archive }}
-    dest: /usr/lib/jvm
+    dest: {{ java_name }}
 - name: Add Java to $PATH
-  command: echo ${PATH}:/usr/lib/jvm/jdk-13/bin > /etc/environment
+  command: echo ${PATH}:{{ java_name }}/bin > /etc/environment
 - name: Add $JAVA_HOME to environment
-  command: 'echo JAVA_HOME="/usr/lib/jvm/jdk-13" >> /etc/environment'
+  command: 'echo JAVA_HOME="{{ java_name }}" >> /etc/environment'
 - name: Inform UBUNTU about Java location [1]
   alternatives:
     link: /usr/bin/java
     name: java
-    path: /usr/lib/jvm/jdk-13/bin/java
+    path: {{ java_name }}/bin/java
 - name: Inform UBUNTU about Java location [2]
   alternatives:
     link: /usr/bin/javac
     name: javac
-    path: /usr/lib/jvm/jdk-13/bin/javac
+    path: {{ java_name }}/bin/javac
 - name: Inform UBUNTU about Java location [3]
   alternatives:
     name: java
-    path: /usr/lib/jvm/jdk-13/bin/java
+    path: {{ java_name }}/bin/java
 - name: Inform UBUNTU about Java location [4]
   alternatives:
     name: javac
-    path: /usr/lib/jvm/jdk-13/bin/javac
+    path: {{ java_name }}/bin/javac
