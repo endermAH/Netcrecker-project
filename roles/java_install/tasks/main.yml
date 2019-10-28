@@ -23,17 +23,17 @@
   alternatives:
     link: /usr/bin/java
     name: java
-    path: {{ java_name }}/bin/java
+    path: "{{ java_name }}/bin/java"
 - name: Inform UBUNTU about Java location [2]
   alternatives:
     link: /usr/bin/javac
     name: javac
-    path: {{ java_name }}/bin/javac
+    path: "{{ java_name }}/bin/javac"
 - name: Inform UBUNTU about Java location [3]
   alternatives:
     name: java
-    path: {{ java_name }}/bin/java
+    path: "{{ java_name }}/bin/java"
 - name: Inform UBUNTU about Java location [4]
   alternatives:
     name: javac
-    path: {{ java_name }}/bin/javac
+    path: "{{ java_name }}/bin/javac"
