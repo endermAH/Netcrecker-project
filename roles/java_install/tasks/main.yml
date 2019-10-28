@@ -1,8 +1,8 @@
 ---
-  
+
 - name: Download java
   get_url:
-    url: https://download.oracle.com/otn-pub/java/jdk/13+33/5b8a42f3905b406298b72d750b6919f6/jdk-13_linux-x64_bin.tar.gz
+    url: https://download.oracle.com/otn/java/jdk/8u231-b11/5b13a193868b4bf28bcb45c792fce896/jdk-8u231-linux-arm32-vfp-hflt.tar.gz
     headers:
       Cookie: oraclelicense=accept-securebackup-cookie
     validate_certs: no
