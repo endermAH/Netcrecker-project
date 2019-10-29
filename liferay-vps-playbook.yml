@@ -3,8 +3,19 @@
   vars:
     http_port: 80
     max_clients: 200
+    use_apt: true
   remote_user: root
+
+  include_role:
+    when:
+      - use_apt == true
+    name: java_apt_install
+
+  include_role:
+    when:
+      - use_apt == false
+    name: java_http_install
+
   roles:
-    - java_install
     - wildfly_install
     - liferay_install

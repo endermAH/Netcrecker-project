@@ -1,4 +1,5 @@
 ---
+http_download: false
 archive_name: jdk-8u5-linux-x64.tar.gz
 download_url: "http://download.oracle.com/otn-pub/java/jdk/8u5-b13/{{ archive_name }}"
 download_folder: /opt

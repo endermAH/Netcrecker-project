@@ -1,6 +1,6 @@
 ---
 
-- name: Download java
+- name: Download java from HTTP
   get_url:
     url: "{{ download_url }}"
     headers:
