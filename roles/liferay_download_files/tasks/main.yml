@@ -1,8 +1,3 @@
-- name: Create directory for Liferay files
-  file:
-    path: "{{ liferay_download_path }}"
-    state: directory
-
 # Remote download
 - name: Remote download Liferay dependences, osgi and portal
   when:
@@ -23,11 +18,6 @@
     src: "{{ liferay_local_path }}"
     dest: "{{ liferay_download_path }}"
 
-- name: Create directory for Undertow jars
-  file:
-    path: "{{ undertow_download_path }}"
-    state: directory
-
 # Remote download
 - name: Remote download Undertow websocket, servlet and core jars
   when:
@@ -45,5 +35,5 @@
   when:
     - use_remote_links == false
   synchronize:
-    src: "{{ liferay_local_path }}"
+    src: "{{ undertow_local_path }}"
     dest: "{{ undertow_download_path }}"

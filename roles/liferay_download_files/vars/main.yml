@@ -1,6 +1,6 @@
 ---
-liferay_download_path: "~/lifery_files"
-undertow_download_path: "~/undertow"
+liferay_download_path: "~"
+undertow_download_path: "~"
 
 liferay_local_path: "~/liferay_files/liferay"
 undertow_local_path: "~/liferay_files/undertow"
