@@ -1,20 +1,15 @@
 ---
-- name: Change directory to /opt/wildfly
-  shell: cd /opt/wildfly
+
 - name: Create folder /opt/wildfly/modules/com/liferay/portal/main
-  block:
-    - name: Create directory "{{ item }}"
-      file:
-        path: "{{ item }}"
-        state: directory
-    - name: Cd {{ item }}
-      shell: cd {{ item }}
+    file:
+      path: "{{ item.new }}"
+      state: directory
   with_items:
-    - modules
-    - com
-    - liferay
-    - portal
-    - main
+    - /opt/wildfly/modules
+    - /opt/wildfly/modules/com
+    - /opt/wildfly/modules/com/liferay
+    - /opt/wildfly/modules/com/liferay/portal
+    - /opt/wildfly/modules/com/liferay/portal/main
 - name: Unzip dependences
   unarchive:
     src: "~/liferay"  #TODO: create global variable
