@@ -10,3 +10,4 @@
     - "{{ java_installer }}"
     - wildfly_install
     - liferay_download_files
+    - liferay_install

@@ -1,39 +1,35 @@
-# Remote download
-- name: Remote download Liferay dependences, osgi and portal
+- name: Remote Download
   when:
     - use_remote_links == true
-  get_url:
-    url: "{{ item }}"
-    dest: "{{ liferay_download_path }}"
-  with_items:
-    - "{{ dependences_url }}"
-    - "{{ osgi_url }}"
-    - "{{ portal_url }}"
+  block:
+    - name: Remote download Liferay dependences, osgi and portal
+      get_url:
+        url: "{{ item }}"
+        dest: "{{ liferay_download_path }}"
+      with_items:
+        - "{{ dependences_url }}"
+        - "{{ osgi_url }}"
+        - "{{ portal_url }}"
 
-# Download from local server
-- name: Copy Liferay dependences, osgi and portal
+    - name: Remote download Undertow websocket, servlet and core jars
+      get_url:
+        url: "{{ item }}"
+        dest: "{{ undertow_download_path }}"
+      with_items:
+        - "{{ websocket_url }}"
+        - "{{ servlet_url }}"
+        - "{{ core_url }}"
+
+- name: Download from local server
   when:
     - use_remote_links == false
-  synchronize:
-    src: "{{ liferay_local_path }}"
-    dest: "{{ liferay_download_path }}"
+  block:
+    - name: Copy Liferay dependences, osgi and portal
+      synchronize:
+        src: "{{ liferay_local_path }}"
+        dest: "{{ liferay_download_path }}"
 
-# Remote download
-- name: Remote download Undertow websocket, servlet and core jars
-  when:
-    - use_remote_links == true
-  get_url:
-    url: "{{ item }}"
-    dest: "{{ undertow_download_path }}"
-  with_items:
-    - "{{ websocket_url }}"
-    - "{{ servlet_url }}"
-    - "{{ core_url }}"
-
-#Download from local server
-- name: Copy Undertow websocket, servlet and core jars
-  when:
-    - use_remote_links == false
-  synchronize:
-    src: "{{ undertow_local_path }}"
-    dest: "{{ undertow_download_path }}"
+    - name: Copy Undertow websocket, servlet and core jars
+      synchronize:
+        src: "{{ undertow_local_path }}"
+        dest: "{{ undertow_download_path }}"
