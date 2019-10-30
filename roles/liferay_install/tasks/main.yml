@@ -1,12 +1,19 @@
-- name: Download Liferay dependences
-  get_url:
-    url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip/download
-    dest: '~'
-- name: Download OSGI zip file
-  get_url:
-    url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-osgi-7.2.0-ga1-20190531153709761.zip/download
-    dest: '~'
-- name: Download Liferay portal
-  get_url:
-    url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-7.2.0-ga1-20190531153709761.war/download
-    dest: '~'
+---
+
+- name: Create folder /opt/wildfly/modules/com/liferay/portal/main
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/wildfly/modules
+    - /opt/wildfly/modules/com
+    - /opt/wildfly/modules/com/liferay
+    - /opt/wildfly/modules/com/liferay/portal
+    - /opt/wildfly/modules/com/liferay/portal/main
+- name: Unzip dependences
+  unarchive:
+    remote_src: no
+    src: "~/liferay/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip"  #TODO: create global variable
+    dest: "/opt/wildfly/modules/com/liferay/portal/main"
+- name: Move dependences to main
+  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main
