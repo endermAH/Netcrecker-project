@@ -1,9 +1,9 @@
 ---
 
 - name: Create folder /opt/wildfly/modules/com/liferay/portal/main
-    file:
-      path: "{{ item.new }}"
-      state: directory
+  file:
+    path: "{{ item.new }}"
+    state: directory
   with_items:
     - /opt/wildfly/modules
     - /opt/wildfly/modules/com
