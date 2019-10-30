@@ -9,4 +9,4 @@
   roles:
     - "{{ java_installer }}"
     - wildfly_install
-    - liferay_install
+    - liferay_download_files

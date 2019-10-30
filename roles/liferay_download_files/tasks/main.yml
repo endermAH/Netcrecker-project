@@ -1,0 +1,49 @@
+- name: Create directory for Liferay files
+  file:
+    path: "{{ liferay_download_path }}"
+    state: directory
+
+# Remote download
+- name: Remote download Liferay dependences, osgi and portal
+  when:
+    - use_remote_links == true
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ liferay_download_path }}"
+  with_items:
+    - "{{ dependences_url }}"
+    - "{{ osgi_url }}"
+    - "{{ portal_url }}"
+
+# Download from local server
+- name: Copy Liferay dependences, osgi and portal
+  when:
+    - use_remote_links == false
+  synchronize:
+    src: "{{ liferay_local_path }}"
+    dest: "{{ liferay_download_path }}"
+
+- name: Create directory for Undertow jars
+  file:
+    path: "{{ undertow_download_path }}"
+    state: directory
+
+# Remote download
+- name: Remote download Undertow websocket, servlet and core jars
+  when:
+    - use_remote_links == true
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ undertow_download_path }}"
+  with_items:
+    - "{{ websocket_url }}"
+    - "{{ servlet_url }}"
+    - "{{ core_url }}"
+
+#Download from local server
+- name: Copy Undertow websocket, servlet and core jars
+  when:
+    - use_remote_links == false
+  synchronize:
+    src: "{{ liferay_local_path }}"
+    dest: "{{ undertow_download_path }}"

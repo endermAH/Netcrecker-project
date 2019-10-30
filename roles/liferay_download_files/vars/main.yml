@@ -1,0 +1,18 @@
+---
+liferay_download_path: "~/lifery_files"
+undertow_download_path: "~/undertow"
+
+liferay_local_path: "~/liferay_files/liferay"
+undertow_local_path: "~/liferay_files/undertow"
+
+# If you want download from official websites set use_remote_links: true
+use_remote_links: false
+
+#Liferay
+dependences_url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip/download
+osgi_url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-osgi-7.2.0-ga1-20190531153709761.zip/download
+portal_url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-7.2.0-ga1-20190531153709761.war/download
+#Undertow
+websocket_url: https://repo1.maven.org/maven2/io/undertow/undertow-websockets-jsr/2.0.23.Final/undertow-websockets-jsr-2.0.23.Final.jar
+servlet_url: https://repo1.maven.org/maven2/io/undertow/undertow-servlet/2.0.23.Final/undertow-servlet-2.0.23.Final.jar
+core_url: https://repo1.maven.org/maven2/io/undertow/undertow-core/2.0.23.Final/undertow-core-2.0.23.Final.jar
