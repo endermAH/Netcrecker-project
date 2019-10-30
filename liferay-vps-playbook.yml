@@ -7,6 +7,6 @@
   remote_user: root
 
   roles:
-    - {{ java_installer }}
+    - "{{ java_installer }}"
     - wildfly_install
     - liferay_install
