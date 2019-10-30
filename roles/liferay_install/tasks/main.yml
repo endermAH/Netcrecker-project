@@ -1,7 +1,7 @@
 ---
-
+- name: Change directory to /opt/wildfly
+  shell: cd /opt/wildfly
 - name: Create folder /opt/wildfly/modules/com/liferay/portal/main
-  chdir: /opt/wildfly
   block:
     - name: Create directory "{{ item }}"
       file:
@@ -15,7 +15,6 @@
     - liferay
     - portal
     - main
-
 - name: Unzip dependences
   unarchive:
     src: "~/liferay"  #TODO: create global variable
