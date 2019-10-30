@@ -1,0 +1,24 @@
+---
+
+- name: Create folder /opt/wildfly/modules/com/liferay/portal/main
+  chdir: /opt/wildfly
+  block:
+    - name: Create directory "{{ item }}"
+      file:
+        path: "{{ item }}"
+        state: directory
+    - name: Cd {{ item }}
+      shell: cd {{ item }}
+  with_items:
+    - modules
+    - com
+    - liferay
+    - portal
+    - main
+
+- name: Unzip dependences
+  unarchive:
+    src: "~/liferay"  #TODO: create global variable
+    dest: "/opt/wildfly/modules/com/liferay/portal/main"
+- name: Move dependences to main
+  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main
