@@ -1,0 +1,12 @@
+- name: Download Liferay dependences
+  get_url:
+    url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip/download
+    dest: '~'
+- name: Download OSGI zip file
+  get_url:
+    url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-osgi-7.2.0-ga1-20190531153709761.zip/download
+    dest: '~'
+- name: Download Liferay portal
+  get_url:
+    url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-7.2.0-ga1-20190531153709761.war/download
+    dest: '~'

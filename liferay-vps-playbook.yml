@@ -3,7 +3,10 @@
   vars:
     http_port: 80
     max_clients: 200
+    java_installer: java_apt_install
   remote_user: root
+
   roles:
-    - java_install
+    - "{{ java_installer }}"
     - wildfly_install
+    - liferay_install
