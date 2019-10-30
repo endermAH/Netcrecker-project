@@ -6,7 +6,7 @@ liferay_local_path: "~/liferay_files/liferay"
 undertow_local_path: "~/liferay_files/undertow"
 
 # If you want download from official websites set use_remote_links: true
-use_remote_links: false
+use_remote_links: true
 
 #Liferay
 dependences_url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.2.0%20GA1/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip/download
