@@ -27,4 +27,4 @@
   with_items:
     "{{ module_xml_list }}"
 - name: Unzip OSGi
-  shell: unzip ~/liferay/liferay-ce-portal-osqi* -d /opt/osgi
+  shell: unzip ~/liferay/liferay-ce-portal-osgi-7.2.0-ga1-20190531153709761.zip -d /opt/osgi
