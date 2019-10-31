@@ -11,7 +11,7 @@
     - /opt/wildfly/modules/com/liferay/portal
     - /opt/wildfly/modules/com/liferay/portal/main
 - name: Unzip dependences
-  shell: unzip ~/liferay/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip -d /opt/wildfly/modules/com/liferay/portal/main
+  shell: unzip ~/liferay/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main
   # unarchive:
   #   src: "~/liferay/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip"  #TODO: create global variable
   #   dest: "/opt/wildfly/modules/com/liferay/portal/main"
@@ -19,8 +19,10 @@
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
 - name: Create module.xml files
   lineinfile:
-    create: Y
+    create: true
     path: /opt/wildfly/modules/com/liferay/portal/main/module.xml
     line: "{{ item }}"
   with_items:
     "{{ module_xml_list }}"
+- name: Unzip OSGi
+  shell: unzip ~/liferay/liferay-ce-portal-osqi* -d /opt/osgi
