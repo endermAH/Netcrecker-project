@@ -19,6 +19,7 @@
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
 - name: Create module.xml files
   lineinfile:
+    create: Y
     path: /opt/wildfly/modules/com/liferay/portal/main/module.xml
     line: "{{ item }}"
   with_items:
