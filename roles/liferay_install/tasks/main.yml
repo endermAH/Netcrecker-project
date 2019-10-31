@@ -28,3 +28,5 @@
     "{{ module_xml_list }}"
 - name: Unzip OSGi
   shell: unzip ~/liferay/liferay-ce-portal-osgi-7.2.0-ga1-20190531153709761.zip -d /opt/osgi
+- name: Move osgi to osgi
+  shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi
