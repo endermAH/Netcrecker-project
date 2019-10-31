@@ -16,7 +16,7 @@
   #   src: "~/liferay/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip"  #TODO: create global variable
   #   dest: "/opt/wildfly/modules/com/liferay/portal/main"
 - name: Move dependences to main
-  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir liferay-ce-portal-dependencies-7.2.0-ga1
+  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
 - name: Create module.xml files
   lineinfile:
     path: /opt/wildfly/modules/com/liferay/portal/main/module.xml
