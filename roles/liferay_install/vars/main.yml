@@ -27,4 +27,4 @@ module_xml_list:
   - '    <module name="javax.servlet.jsp.api" />'
   - '    <module name="javax.transaction.api" />'
   - '</dependencies>'
-- '</module>'
+  - '</module>'
