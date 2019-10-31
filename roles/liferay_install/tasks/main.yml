@@ -10,6 +10,8 @@
     - /opt/wildfly/modules/com/liferay
     - /opt/wildfly/modules/com/liferay/portal
     - /opt/wildfly/modules/com/liferay/portal/main
+- name: Remove all files
+  shell: rm -rf /opt/wildfly/modules/com/liferay/portal/main/*
 - name: Unzip dependences
   shell: unzip ~/liferay/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main
   # unarchive:
