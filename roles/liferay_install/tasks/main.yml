@@ -27,6 +27,14 @@
   with_items:
     "{{ module_xml_list }}"
 - name: Unzip OSGi
-  shell: rm -rf /opt/osgi/* && unzip ~/liferay/liferay-ce-portal-osgi-7.2.0-ga1-20190531153709761.zip -d /opt/osgi
+  shell: rm -rf /opt/osgi/* && unzip ~/liferay/liferay-ce-portal-osgi-*.zip -d /opt/osgi
 - name: Move osgi to osgi
-  shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi
+  shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
+- name: Modify standalone.xmlns
+  template:
+    src: standalone_tmplt.j2
+    dest: /opt/wildfly/standalone/configuration/standalone.xml
+  vars:
+    filter_spec: '<filter-spec value="not(any(match(&quot;WFLYSRV0059&quot;),match(&quot;WFLYEE0007&quot;)))" />'
+    deployment_timeout: 'deployment-timeout="600"'
+    jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'

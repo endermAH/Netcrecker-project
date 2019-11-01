@@ -28,3 +28,9 @@ module_xml_list:
   - '    <module name="javax.transaction.api" />'
   - '</dependencies>'
   - '</module>'
+
+wildfly_config:
+  - {find: , replace: }
+  - {find: , replace: }
+  - {find: , replace: }
+  - {find: , replace: }
