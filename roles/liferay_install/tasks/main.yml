@@ -47,9 +47,7 @@
     - "/opt/wildfly/modules/system/layers/base/io/undertow/servlet/main"
     - "/opt/wildfly/modules/system/layers/base/io/undertow/core/main"
 - name: Copy new undertow jars
-  shell: "cp {{ undertow_download_path }}/undertow/undertow-{{ item }}* ./"
-  args:
-    chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
+  shell: "cp {{ undertow_download_path }}/undertow/undertow-{{ item }}* /opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
   with_items:
     - "websocket"
     - "servlet"
