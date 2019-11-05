@@ -1,0 +1,19 @@
+if [ "x$JBOSS_MODULES_SYSTEM_PKGS" = "x" ]; then
+   JBOSS_MODULES_SYSTEM_PKGS="org.jboss.byteman"
+fi
+
+# Uncomment the following line to prevent manipulation of JVM options
+# by shell scripts.
+#
+#PRESERVE_JAVA_OPTS=true
+
+#
+# Specify options to pass to the Java VM.
+#
+if [ "x$JAVA_OPTS" = "x" ]; then
+   JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
+else
+   echo "JAVA_OPTS already set in environment; overriding default settings with values: $JAVA_OPTS"
+fi
+
+JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF-8 -Djava.net.preferIPv4Stack=true -Djboss.as.management.blocking.timeout=480 -Duser.timezone=GMT -Xms{{ min_memory }}m -Xmx{{ max_memory }}m -XX:MaxMetaspaceSize=512m -XX:MetaspaceSize=200m"

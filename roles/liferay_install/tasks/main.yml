@@ -61,3 +61,10 @@
     - "websocket"
     - "servlet"
     - "core"
+- name: Edit bin/standalone.conf
+  template:
+    src: standalone.conf_tmplt.j2
+    dest: /opt/wildfly/bin/standalone.conf
+  vars:
+    min_memory: 512
+    max_memory: 1000
