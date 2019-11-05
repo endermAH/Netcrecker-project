@@ -30,7 +30,7 @@
   shell: rm -rf /opt/osgi/* && unzip ~/liferay/liferay-ce-portal-osgi-*.zip -d /opt/osgi
 - name: Move osgi to osgi
   shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
-- name: Modify standalone.xmlns
+- name: Modify standalone.xml
   template:
     src: standalone_tmplt.j2
     dest: /opt/wildfly/standalone/configuration/standalone.xml
@@ -38,3 +38,28 @@
     filter_spec: '<filter-spec value="not(any(match(&quot;WFLYSRV0059&quot;),match(&quot;WFLYEE0007&quot;)))" />'
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
+    system_property:
+- name: Delete all old undertow jars
+  chdir: "{{ item }}"
+  shell: "rm undertow*"
+  with_items:
+    - /opt/wildfly/modules/system/layers/base/io/undertow/websocket/main
+    - /opt/wildfly/modules/system/layers/base/io/undertow/servlet/main
+    - /opt/wildfly/modules/system/layers/base/io/undertow/core/main
+- name: Copy new undertow jars
+  chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
+  shell: "cp {{ undertow_download_path }}/undertow/undertow-{{ item }}* ./"
+  with_items:
+    - websocket
+    - servlet
+    - core
+- name: Edit module.xml
+  chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
+  lineinfile:
+    path: main.xml
+    regexp: "<resource-root path="
+    line: "<resource-root path="undertow-websockets-jsr-2.0.23.Final.jar"/>"
+  with_items:
+    - websocket
+    - servlet
+    - core
