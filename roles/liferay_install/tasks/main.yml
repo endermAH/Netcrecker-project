@@ -39,22 +39,22 @@
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
 - name: Delete all old undertow jars
-  chdir: "{{ item }}"
   shell: "rm undertow*"
+    chdir: "{{ item }}"
   with_items:
     - /opt/wildfly/modules/system/layers/base/io/undertow/websocket/main
     - /opt/wildfly/modules/system/layers/base/io/undertow/servlet/main
     - /opt/wildfly/modules/system/layers/base/io/undertow/core/main
 - name: Copy new undertow jars
-  chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
   shell: "cp {{ undertow_download_path }}/undertow/undertow-{{ item }}* ./"
+    chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
   with_items:
     - websocket
     - servlet
     - core
 - name: Edit module.xml
-  chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
   lineinfile:
+    chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
     path: main.xml
     regexp: "<resource-root path="
     line: '<resource-root path="undertow-websockets-jsr-2.0.23.Final.jar"/>'
