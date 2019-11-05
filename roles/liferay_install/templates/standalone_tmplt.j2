@@ -258,11 +258,6 @@
                 <file-audit-log name="local-audit" path="audit.log" relative-to="jboss.server.log.dir" format="JSON"/>
             </audit-logging>
             <security-domains>
-                <security-domain name="PortalRealm">
-                    <authentication>
-                        <login-module code="com.liferay.portal.security.jaas.PortalLoginModule" flag="required" />
-                    </authentication>
-                </security-domain>
                 <security-domain name="ApplicationDomain" default-realm="ApplicationRealm" permission-mapper="default-permission-mapper">
                     <realm name="ApplicationRealm" role-decoder="groups-to-roles"/>
                     <realm name="local"/>
@@ -442,6 +437,11 @@
         <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
         <subsystem xmlns="urn:jboss:domain:security:2.0">
             <security-domains>
+              <security-domain name="PortalRealm">
+                  <authentication>
+                      <login-module code="com.liferay.portal.security.jaas.PortalLoginModule" flag="required" />
+                  </authentication>
+              </security-domain>
                 <security-domain name="other" cache-type="default">
                     <authentication>
                         <login-module code="Remoting" flag="optional">
