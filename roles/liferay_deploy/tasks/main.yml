@@ -16,4 +16,4 @@
 - name: Create ROOT.war.dodeploy
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy
-    state: file
+    state: touch
