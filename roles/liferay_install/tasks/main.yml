@@ -58,7 +58,7 @@
   lineinfile:
     path: main.xml
     regexp: "<resource-root path="
-    line: "<resource-root path="undertow-websockets-jsr-2.0.23.Final.jar"/>"
+    line: '<resource-root path="undertow-websockets-jsr-2.0.23.Final.jar"/>'
   with_items:
     - websocket
     - servlet
