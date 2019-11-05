@@ -1,0 +1,18 @@
+---
+
+- name: Create directory ROOT.war
+  file:
+    path: /opt/wildfly/standalone/deployments/ROOT.war
+    state: directory
+- name: Clean ROOT.war
+  file:
+    path: /opt/wildfly/standalone/deployments/ROOT.war/
+    state: absent
+- name: Cp liferay war
+  copy:
+    src: "{{ liferay_download_path }}"/liferay/liferay-ce-portal-7.2.0-ga1-20190531153709761.war
+    dest: /opt/wildfly/standalone/deployments/ROOT.war/
+- name: Create ROOT.war.dodeploy
+  file:
+    path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy
+    state: file
