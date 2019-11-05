@@ -38,7 +38,6 @@
     filter_spec: '<filter-spec value="not(any(match(&quot;WFLYSRV0059&quot;),match(&quot;WFLYEE0007&quot;)))" />'
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
-    system_property:
 - name: Delete all old undertow jars
   chdir: "{{ item }}"
   shell: "rm undertow*"
