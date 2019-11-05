@@ -40,6 +40,7 @@
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
 - name: Delete all old undertow jars
   shell: "rm undertow*"
+  args:
     chdir: "{{ item }}"
   with_items:
     - "/opt/wildfly/modules/system/layers/base/io/undertow/websocket/main"
@@ -47,6 +48,7 @@
     - "/opt/wildfly/modules/system/layers/base/io/undertow/core/main"
 - name: Copy new undertow jars
   shell: "cp {{ undertow_download_path }}/undertow/undertow-{{ item }}* ./"
+  args:
     chdir: "/opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
   with_items:
     - "websocket"
