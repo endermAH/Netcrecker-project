@@ -1,13 +1,13 @@
 ---
 
-- name: Create directory ROOT.war
-  file:
-    path: /opt/wildfly/standalone/deployments/ROOT.war
-    state: directory
 - name: Clean ROOT.war
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war/
     state: absent
+- name: Create directory ROOT.war
+  file:
+    path: /opt/wildfly/standalone/deployments/ROOT.war
+    state: directory
 - name: Cp liferay war
   copy:
     remote_src: true
