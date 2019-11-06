@@ -2,10 +2,6 @@
 - hosts: staging_servers
   remote_user: root
   tasks: 
-  # - name: update cache
-  #   apt: update_cache=yes
-  # - name: upgrade cache
-  #   apt: upgrade_cache=yes
   - name: update and upgrade cache
     apt:
       update_cache: yes
@@ -34,3 +30,4 @@
         name: postgresql
         state: started
         enabled: yes
+        
