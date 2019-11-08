@@ -5,6 +5,7 @@
     max_clients: 200
     java_installer: java_apt_install
   remote_user: root
+  gather_facts: false
 
   roles:
     - "{{ java_installer }}"

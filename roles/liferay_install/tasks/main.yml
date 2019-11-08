@@ -1,5 +1,7 @@
 ---
-
+- name: Install Unzip
+  apt:
+    name: unzip
 - name: Create folder /opt/wildfly/modules/com/liferay/portal/main
   file:
     path: "{{ item }}"
