@@ -33,3 +33,8 @@
       synchronize:
         src: "{{ undertow_local_path }}"
         dest: "{{ undertow_download_path }}"
+
+- name: Remote download psql driver
+  get_url:
+    url: https://jdbc.postgresql.org/download/postgresql-42.2.8.jar
+    dest: ~

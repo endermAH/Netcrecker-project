@@ -22,6 +22,8 @@
   #   dest: "/opt/wildfly/modules/com/liferay/portal/main"
 - name: Move dependences to main
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
+- name: Move PSQL driver
+  shell: mv ~/postgresql-42.2.8.jar /opt/wildfly/modules/com/liferay/portal/main
 - name: Create module.xml files
   lineinfile:
     create: true
