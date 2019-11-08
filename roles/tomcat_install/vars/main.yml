@@ -1,0 +1,5 @@
+---
+# vars file for tomcat
+     req_tomcat_ver: 9.0.27
+     tomcat_url: http://mirror.linux-ia64.org/apache/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
+     tomcat_port: 38000

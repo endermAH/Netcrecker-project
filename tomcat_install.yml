@@ -1,0 +1,9 @@
+---
+- name: Install and configure tomcat
+  hosts: all
+  gather_facts: false
+  become: yes
+#  ansible_become_pass: sit  
+
+  roles: 
+    - tomcat
