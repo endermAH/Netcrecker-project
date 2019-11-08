@@ -6,17 +6,17 @@
     state: latest
 
 - name: create db
-  become_user: postgres
+  #become_user: postgres
   postgresql_db:
     name: main
 - name: add_user
-  become_user: postgres
+  #become_user: postgres
   postgresql_user:
     db: main
     user: dd
     password: '12345'
 - name: enable postgresql and start
-  become_user: postgres
+#  become_user: postgres
   systemd:
     name: postgresql
     state: started
