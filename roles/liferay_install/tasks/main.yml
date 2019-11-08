@@ -54,13 +54,13 @@
     - "core"
 - name: Edit module.xml
   lineinfile:
-    path: /opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main/module.xml
+    path: /opt/wildfly/modules/system/layers/base/io/undertow/{{ item.path }}/main/module.xml
     regexp: "<resource-root path="
-    line: '<resource-root path="undertow-websockets-jsr-2.0.23.Final.jar"/>'
+    line: '<resource-root path="undertow-{{ item.name }}-2.0.23.Final.jar"/>'
   with_items:
-    - "websocket"
-    - "servlet"
-    - "core"
+    - {path: "websocket", name: "websockets-jsr"}
+    - {path: "servlet", name: "servlet"}
+    - {path: "core", name: "core"}
 - name: Edit bin/standalone.conf
   template:
     src: standalone.conf_tmplt.j2

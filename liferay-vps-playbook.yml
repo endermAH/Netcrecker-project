@@ -11,3 +11,4 @@
     - wildfly_install
     - liferay_download_files
     - liferay_install
+    - liferay_deploy
