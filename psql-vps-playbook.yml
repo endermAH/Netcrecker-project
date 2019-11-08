@@ -1,5 +1,5 @@
 ---
-- hosts: liferay
+- hosts: psql
   vars:
     http_port: 80
     max_clients: 200
@@ -8,8 +8,4 @@
   gather_facts: false
 
   roles:
-    - "{{ java_installer }}"
-    - wildfly_install
-    - liferay_download_files
-    - liferay_install
-    - liferay_deploy
+    - psql_install
