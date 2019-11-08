@@ -2,11 +2,8 @@
 - name: install postgresql
   apt:
     update_cache: yes
-    name: "{{ item }}"
+    name: ['postgresql', 'python-psycopg2']
     state: latest
-  with_items:
-    - postgresql
-    - python-psycopg2
 
 - name: create db
   become_user: postgres
