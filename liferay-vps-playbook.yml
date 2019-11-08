@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: liferay
   vars:
     http_port: 80
     max_clients: 200
