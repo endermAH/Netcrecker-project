@@ -1,33 +1,26 @@
 ---
-- hosts: staging_servers
-  remote_user: root
-  tasks: 
-  - name: update and upgrade cache
-    apt:
-      update_cache: yes
-      upgrade: yes
-  - name: install postgresql
-    apt: pkg={{ item }}
-      state=latest
-    with_items:
-      - postgresql 
-      - python-psycopg2
+- name: install postgresql
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - postgresql
+    - python-psycopg2
 
-- hosts: staging_servers
-  become: yes
+- name: create db
   become_user: postgres
-  tasks:
-    - name: create db
-      postgresql_db:
-        name: main
-    - name: add_user
-      postgresql_user: 
-        db: main 
-        user: dd
-        password: '12345'
-    - name: enable postgresql and start
-      systemd:
-        name: postgresql
-        state: started
-        enabled: yes
-        
+  postgresql_db:
+    name: main
+- name: add_user
+  become_user: postgres
+  postgresql_user:
+    db: main
+    user: dd
+    password: '12345'
+- name: enable postgresql and start
+  become_user: postgres
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes
