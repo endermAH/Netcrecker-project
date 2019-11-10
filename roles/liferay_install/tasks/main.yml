@@ -71,5 +71,5 @@
     src: standalone.conf_tmplt.j2
     dest: /opt/wildfly/bin/standalone.conf
   vars:
-    min_memory: 512
-    max_memory: 1000
+    min_memory: 2560
+    max_memory: 2560
