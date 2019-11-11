@@ -1,0 +1,22 @@
+---
+- name: add Tomcat user
+  user:
+    name: tomcat
+    shell: /bin/false
+    home: opt/tomcat
+- name: Download & unarchive Tomcat 7
+  unarchive:
+    remote_src: yes
+    src: "{{ tomcat_link }}"
+    dest: /opt/tomcat/
+- name: Create a symbolic link
+  file:
+    src:  /opt/tomcat/apache-tomcat-9.0.27
+    dest: /opt/tomcat/latest
+    state: link
+- name: Change owner to Tomcat user
+  file:
+    path: /opt/tomcat/latest
+    owner: tomcat
+- name: Change executing access
+  shell: sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
