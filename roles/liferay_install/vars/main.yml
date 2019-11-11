@@ -16,7 +16,7 @@ module_xml_list:
   - '    <resource-root path="com.liferay.petra.string.jar" />'
   - '    <resource-root path="com.liferay.registry.api.jar" />'
   - '    <resource-root path="hsql.jar" />'
-  # - '    <resource-root path="mysql.jar" />'
+  - '    <resource-root path="postgresql-42.2.8.jar" />'
   - '    <resource-root path="portal-kernel.jar" />'
   - '    <resource-root path="portlet.jar" />'
   - '</resources>'
@@ -28,9 +28,3 @@ module_xml_list:
   - '    <module name="javax.transaction.api" />'
   - '</dependencies>'
   - '</module>'
-
-wildfly_config:
-  - {find: , replace: }
-  - {find: , replace: }
-  - {find: , replace: }
-  - {find: , replace: }
