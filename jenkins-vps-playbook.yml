@@ -1,5 +1,5 @@
 ---
-- hosts: jenkins
+- connection: local
   vars:
     java_installer: java_apt_install
   remote_user: root
