@@ -1,5 +1,5 @@
 ---
-- hosts: liferay
+- hosts: jenkins
   vars:
     java_installer: java_apt_install
   remote_user: root
@@ -7,7 +7,4 @@
 
   roles:
     - "{{ java_installer }}"
-    - wildfly_install
-    - liferay_download_files
-    - liferay_install
-    - liferay_deploy
+    - tomcat_install

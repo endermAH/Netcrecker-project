@@ -1,0 +1,41 @@
+---
+# Download & setup
+- name: add Tomcat user
+  user:
+    name: tomcat
+    shell: /bin/false
+    home: /opt/tomcat
+- name: Download & unarchive Tomcat 7
+  unarchive:
+    remote_src: yes
+    src: "{{ tomcat_link }}"
+    dest: /opt/tomcat/
+- name: Create a symbolic link
+  file:
+    src:  /opt/tomcat/apache-tomcat-9.0.27
+    dest: /opt/tomcat/latest
+    state: link
+- name: Change owner to Tomcat user
+  file:
+    path: /opt/tomcat/latest
+    owner: tomcat
+    group: tomcat
+    recurse: yes
+    state: directory
+- name: Change executing access
+  shell: sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+
+# Start it as a demon
+- name: Create systemd file
+  template:
+    src: service.tomcat-tmplt.j2
+    dest: /etc/systemd/system/tomcat.service
+- name: Start tomcat demon
+  systemd:
+    daemon_reload: yes
+    name: tomcat
+    state: started
+- name: Enable tomcat
+  systemd:
+    name: tomcat
+    enabled: yes
