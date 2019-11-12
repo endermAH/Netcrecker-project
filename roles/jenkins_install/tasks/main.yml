@@ -2,7 +2,7 @@
 - name: Download Jenkins
   get_url:
     url: http://mirrors.jenkins.io/war/latest/jenkins.war
-    dest: /opt/tomcat/lastest/webapps/
+    dest: /opt/tomcat/latest/webapps/
 - name: Fix AWT error - apt ttf-dejavu & fontconfig
   apt:
     update_cache: yes
