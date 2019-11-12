@@ -3,7 +3,7 @@
   user:
     name: tomcat
     shell: /bin/false
-    home: opt/tomcat
+    home: /opt/tomcat
 - name: Download & unarchive Tomcat 7
   unarchive:
     remote_src: yes
