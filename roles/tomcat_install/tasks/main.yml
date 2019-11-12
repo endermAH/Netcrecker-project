@@ -20,6 +20,7 @@
     path: /opt/tomcat/latest
     owner: tomcat
     group: tomcat
+    recurse: yes
 - name: Change executing access
   shell: sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
 
