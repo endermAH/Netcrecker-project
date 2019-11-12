@@ -19,6 +19,7 @@
   file:
     path: /opt/tomcat/latest
     owner: tomcat
+    group: tomcat
 - name: Change executing access
   shell: sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
 
@@ -32,3 +33,7 @@
     daemon_reload: yes
     name: tomcat
     state: started
+- name: Enable tomcat
+  systemd:
+    name: tomcat
+    enabled: yes
