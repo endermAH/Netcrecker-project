@@ -1,4 +1,5 @@
 ---
+# Download & setup
 - name: add Tomcat user
   user:
     name: tomcat
@@ -20,3 +21,14 @@
     owner: tomcat
 - name: Change executing access
   shell: sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+
+# Start it as a demon
+- name: Create systemd file
+  template:
+    src: service.tomcat-tmplt.j2
+    dest: /etc/systemd/system/tomcat.service
+- name: Start tomcat demon
+  systemd:
+    demon_reload: yes
+    name: tomcat
+    state: started
