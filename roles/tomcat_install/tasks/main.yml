@@ -29,6 +29,6 @@
     dest: /etc/systemd/system/tomcat.service
 - name: Start tomcat demon
   systemd:
-    demon_reload: yes
+    daemon_reload: yes
     name: tomcat
     state: started
