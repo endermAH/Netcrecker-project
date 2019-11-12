@@ -7,3 +7,5 @@
   apt:
     update_cache: yes
     name: ['ttf-dejavu', 'fontconfig']
+- name: Start Tomcat
+  shell: /opt/tomcat/lastest/bin/catalina.sh start
