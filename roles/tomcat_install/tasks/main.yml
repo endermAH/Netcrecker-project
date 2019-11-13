@@ -9,7 +9,7 @@
           name: tomcat
           group: tomcat
           system: no
-          shell: /bin/false
+          shell: /bin/bash
           createhome: yes
           home: /opt/tomcat
 
@@ -30,9 +30,6 @@
           dest: /opt
           remote_src: yes
 
-      - name: Renaming tomcat home
-        shell: mv /opt/apache-tomcat-{{req_tomcat_ver}}/* /opt/tomcat
-
       - name: Change mode recurse conf
         file:
           path: /opt/tomcat/conf
@@ -45,19 +42,6 @@
           path: /opt/tomcat/conf
           state: directory
           mode: g+x
-  
-      - name: Tomcat /webapps ...
-        file:
-          path: /opt/tomcat/{{ item }}
-          state: directory
-          recurse: yes
-          owner: tomcat
-          group: tomcat
-        loop:
-          - webapps
-          - work
-          - temp
-          - logs
 
       - name: Change group directory tomcat
         file:
@@ -126,3 +110,15 @@
       - name: start tomcat
         shell: nohup /opt/tomcat/bin/startup.sh &
 
+      - name: Tomcat /webapps ...
+        file:
+          path: /opt/tomcat/{{ item }}
+          state: directory
+          recurse: yes
+          owner: tomcat
+          group: tomcat
+        loop:
+          - webapps
+          - work
+          - temp
+          - logs
