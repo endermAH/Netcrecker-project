@@ -4,11 +4,11 @@ ssh root@$1 "cd ~/ && git clone https://github.com/endermAH/Netcrecker-project.g
 
 GIT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
 
-ssh root@$1  "cd ~/Netcrecker-Lab-1 && git pull"
-ssh root@$1  "cd ~/Netcrecker-Lab-1 && git checkout $GIT_BRANCH"
+ssh root@$1  "cd ~/Netcrecker-project && git pull"
+ssh root@$1  "cd ~/Netcrecker-project && git checkout $GIT_BRANCH"
 
 ssh root@$1 "/root/Netcrecker-project/roles/ansible_install/ansible_install.sh"
 
-ssh root@$1  "cd ~/Netcrecker-Lab-1 && ansible-playbook -i inventory.ini jenkins-vps-playbook.yml"
-ssh root@$1  "cd ~/Netcrecker-Lab-1 && ansible-playbook -i inventory.ini psql-vps-playbook.yml"
-ssh root@$1  "cd ~/Netcrecker-Lab-1 && ansible-playbook -i inventory.ini liferay-vps-playbook.yml"
+ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini jenkins-vps-playbook.yml"
+ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini psql-vps-playbook.yml"
+ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini liferay-vps-playbook.yml"
