@@ -5,28 +5,52 @@ properties ([disableConcurrentBuilds()])
 pipeline {
     agent any
 
-    stages {
-        stage ('ssh'){
-            steps {
-                sh 'ssh root@target \'hostname\''
-            }
-        }
-        
-        stage ('Compile Stage') {
-            steps {
-                echo 'Hi, this is Jenkins user!'
+    options{
+        ansiColor('xterm')
+/// Добавить после проверки основного pipeline
+ /*     inventoryPath('/etc/ansible/hosts') 
+        ansibleName('2.9.0')
+        become(true)
+*/
+    }
+
+    stages {   
+        stage ('Java install'){
+            steps{
+                ansiblePlaybook('/etc/ansible/java_install.yml')
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
             }
         }
 
-        stage ('Two') {
+        stage ('WilFly install'){
             steps {
-                sh 'touch /opt/TESTFILE'
+                ansiblePlaybook('/etc/ansible/wildfly_install.yml'){
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
+                }                
             }
         }
 
-        stage ('Three') {
+        stage ('Liferay install') {
+            steps { 
+                ansiblePlaybook('/etc/ansible/jenkins_install.yml'){
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
+                }
+            }
+        }
+
+        stage ('PostgreSQL install'){ 
             steps {
-                echo 'Complite'
+                ansiblePlaybook('/etc/ansible/postgresql_install.yml'){
+                    inventoryPath('/etc/ansible/hosts')
+                    ansibleName('2.9.0')
+                    become(true)
+                }
             }
         }
     }
