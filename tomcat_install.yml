@@ -1,9 +1,8 @@
 ---
 - name: Install and configure tomcat
-  hosts: all
+  hosts: jenkins
   gather_facts: false
   become: yes
-#  ansible_become_pass: sit  
-
+  
   roles: 
-    - tomcat
+    - tomcat_install
