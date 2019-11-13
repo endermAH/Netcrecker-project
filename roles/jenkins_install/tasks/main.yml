@@ -8,4 +8,4 @@
     update_cache: yes
     name: ['ttf-dejavu', 'fontconfig']
 - name: Start Tomcat
-  shell: /opt/tomcat/lastest/bin/catalina.sh start
+  shell: /opt/tomcat/latest/bin/catalina.sh start
