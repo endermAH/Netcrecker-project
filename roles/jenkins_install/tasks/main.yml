@@ -7,10 +7,10 @@
   apt:
     update_cache: yes
     name: ['ttf-dejavu', 'fontconfig']
-- name: Install python-jenkins & lxml
-  apt:
-    update_cache: yes
-    name: lxml
+# - name: Install python-jenkins & lxml
+#   apt:
+#     update_cache: yes
+#     name: lxml
 - name:
   pip:
     name: python-jenkins
