@@ -7,5 +7,23 @@
   apt:
     update_cache: yes
     name: ['ttf-dejavu', 'fontconfig']
+# # - name: Install python-jenkins & lxml
+# #   apt:
+# #     update_cache: yes
+# #     name: lxml
+# - name:
+#   pip:
+#     name: python-jenkins
+# - name:
+#   pip:
+#     name: lxml
+# - name:
+#   jenkins_job:
+#     config: ~/Netcrecker-project/jenkins_job.xml
+#     #enabled: true
+#     name: main
+#     user: root
+#     password: toor
+#     url: http://127.0.0.1:8080/jenkins
 - name: Start Tomcat
   shell: /opt/tomcat/latest/bin/catalina.sh start

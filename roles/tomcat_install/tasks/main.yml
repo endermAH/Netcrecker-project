@@ -17,6 +17,7 @@
     state: link
 - name: Change owner to Tomcat user
   file:
+    follow: yes
     path: /opt/tomcat/latest
     owner: tomcat
     group: tomcat
