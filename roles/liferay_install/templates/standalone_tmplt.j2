@@ -166,8 +166,11 @@
                     </security>
             </datasource>
                 <drivers>
-                    <driver name="postgresql" module="com.liferay.portal">
-                        <driver-class>com.postgresql.jdbc.Driver</driver-class>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                    <driver name="postgresql" module="org.postgres"> 
+                        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
                 </drivers>
             </datasources>

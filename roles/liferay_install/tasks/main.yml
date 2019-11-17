@@ -17,14 +17,23 @@
   shell: rm -rf /opt/wildfly/modules/com/liferay/portal/main/*
 - name: Unzip dependences
   shell: unzip ~/liferay/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main
-  # unarchive:
-  #   src: "~/liferay/liferay-ce-portal-dependencies-7.2.0-ga1-20190531153709761.zip"  #TODO: create global variable
-  #   dest: "/opt/wildfly/modules/com/liferay/portal/main"
 - name: Move dependences to main
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
+- name: Create folder for PSQL driver
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/wildfly/modules/org
+    - /opt/wildfly/modules/org/postgres
+    - /opt/wildfly/modules/org/postgres/main
 - name: Move PSQL driver
-  shell: cp ~/postgresql-42.2.8.jar /opt/wildfly/modules/com/liferay/portal/main/postgresql.jar
-- name: Create module.xml files
+  shell: cp ~/postgresql-42.2.8.jar /opt/wildfly/modules/org/postgres/main/postgresql.jar
+- name: Create module.xml file for driver
+  template:
+    src: module_tmplt.j2
+    dest: /opt/wildfly/modules/org/postgres/main/module.xml
+- name: Create module.xml file for liferay
   lineinfile:
     create: true
     path: /opt/wildfly/modules/com/liferay/portal/main/module.xml
