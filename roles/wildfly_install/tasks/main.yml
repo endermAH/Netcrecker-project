@@ -20,3 +20,5 @@
     path: /opt/wildfly/standalone/configuration/standalone.xml
     regexp: '<inet-address'
     line: '            <any-address/>'
+- name: Add admin user to WildFly
+  shell: /opt/wildfly/bin/add-user.sh root toor
