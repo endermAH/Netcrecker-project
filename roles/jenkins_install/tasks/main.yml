@@ -24,7 +24,7 @@
     name: main
     user: root
     password: toor
-    url: 127.0.0.1:8080/jenkins
+    url: http://127.0.0.1:8080/jenkins
 - name: Copy Jenkins-CLI
   copy:
     src: /opt/tomcat/apache-tomcat-9.0.27/webapps/jenkins/WEB-INF/jenkins-cli.jar
