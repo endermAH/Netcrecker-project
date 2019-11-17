@@ -7,9 +7,9 @@
   apt:
     update_cache: yes
     name: ['ttf-dejavu', 'fontconfig']
-- name: Install python-jenkins & lxml
-  apt:
-    name: ['python-jenkins', 'lxml']
+# - name: Install python-jenkins & lxml
+#   apt:
+#     name: ['python-jenkins', 'lxml']
 - name:
   jenkins_job:
     config: ~/Netcrecker-project/jenkins_job.xml
