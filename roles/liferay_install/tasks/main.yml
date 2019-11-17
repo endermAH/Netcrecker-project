@@ -52,7 +52,7 @@
     filter_spec: '<filter-spec value="not(any(match(&quot;WFLYSRV0059&quot;),match(&quot;WFLYEE0007&quot;)))" />'
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
-    psql_ip: '206.189.22.48'
+    psql_ip: '159.65.83.29'
 - name: Create portal-ext.properties
   lineinfile:
     path: /opt/portal-ext.properties
