@@ -10,5 +10,5 @@ ssh root@$1  "cd ~/Netcrecker-project && git checkout $GIT_BRANCH"
 ssh root@$1 "/root/Netcrecker-project/roles/ansible_install/ansible_install.sh"
 
 ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini jenkins-vps-playbook.yml"
-#ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini psql-vps-playbook.yml"
+ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini psql-vps-playbook.yml"
 #ssh root@$1  "cd ~/Netcrecker-project && ansible-playbook -i inventory.ini liferay-vps-playbook.yml"
