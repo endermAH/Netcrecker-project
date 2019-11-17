@@ -7,5 +7,20 @@
   apt:
     update_cache: yes
     name: ['ttf-dejavu', 'fontconfig']
+- name: Install python-jenkins & lxml
+  apt:
+    name: ['python-jenkins', 'lxml']
+- name:
+  jenkins_job:
+    config: ~/Netcrecker-project/jenkins_job.xml
+    enabled: true
+    name: main
+    user: root
+    password: toor
+    url: 127.0.0.1:8080/jenkins
+- name: Copy Jenkins-CLI
+  copy:
+    src: /opt/tomcat/apache-tomcat-9.0.27/webapps/jenkins/WEB-INF/jenkins-cli.jar
+    dest: ~/jenkins-cli.jar
 - name: Start Tomcat
   shell: /opt/tomcat/latest/bin/catalina.sh start
