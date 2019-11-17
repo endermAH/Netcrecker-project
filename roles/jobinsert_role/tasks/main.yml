@@ -1,0 +1,7 @@
+---
+- name: Copy Jenkins-CLI
+  copy:
+    src: /opt/tomcat/apache-tomcat-9.0.27/webapps/jenkins/WEB-INF/jenkins-cli.jar
+    dest: ~/jenkins-cli.jar
+- name: Insert job
+  shell: "java -jar /usr/bin/jenkins-cli.jar -s http://127.0.0.1:8080/jenkins/ -auth root:toor create-job main < ~/Netcrecker-project/main.xml"
