@@ -13,7 +13,7 @@
 - name:
   jenkins_job:
     config: ~/Netcrecker-project/jenkins_job.xml
-    enabled: true
+    #enabled: true
     name: main
     user: root
     password: toor
