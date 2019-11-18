@@ -6,7 +6,7 @@
 
   - name: Download Jenkins
     get_url:
-      url: {{jenkins_url}}
+      url: "{{jenkins_url}}"
       dest: /opt/tomcat/webapps
 
   - name: Inatall Jenkins
