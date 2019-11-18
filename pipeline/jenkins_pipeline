@@ -5,51 +5,69 @@ properties ([disableConcurrentBuilds()])
 pipeline {
     agent any
 
-    options{
-        ansiColor('xterm')
-/// Добавить после проверки основного pipeline
- /*     inventoryPath('/etc/ansible/hosts') 
-        ansibleName('2.9.0')
-        become(true)
-*/
-    }
-
-    stages {   
-        stage ('Java install'){
+    stages {
+        stage ('Tomcat install'){
             steps{
-                ansiblePlaybook('/etc/ansible/java_install.yml')
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
-            }
-        }
-
-        stage ('WilFly install'){
-            steps {
-                ansiblePlaybook('/etc/ansible/wildfly_install.yml'){
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
-                }                
-            }
-        }
-
-        stage ('Liferay install') {
-            steps { 
-                ansiblePlaybook('/etc/ansible/jenkins_install.yml'){
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
+                ansiColor('xterm') {
+                     ansiblePlaybook(
+                        playbook: '/root/.jenkins/workspace/My Pipeline/tomcat_install.yml',
+                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        colorized: true)
                 }
             }
         }
 
-        stage ('PostgreSQL install'){ 
-            steps {
-                ansiblePlaybook('/etc/ansible/postgresql_install.yml'){
-                    inventoryPath('/etc/ansible/hosts')
-                    ansibleName('2.9.0')
-                    become(true)
+        stage ('Jenkins install'){
+            steps{
+                 ansiColor('xterm') {
+                    ansiblePlaybook(
+                        playbook: '/root/.jenkins/workspace/My Pipeline/jenkins_install.yml',
+                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        colorized: true)
+                }
+            }
+        }   
+
+        stage ('Java install'){
+            steps{
+                 ansiColor('xterm') {
+                    ansiblePlaybook(
+                        playbook: '/root/.jenkins/workspace/My Pipeline/java_install.yml',
+                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        colorized: true)
+                }
+            }
+        }
+
+        stage ('WildFly install'){
+            steps{
+                 ansiColor('xterm') {
+                    ansiblePlaybook(
+                        playbook: '/root/.jenkins/workspace/My Pipeline/wildfly_install.yml',
+                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        colorized: true)
+                }
+            }
+        }
+
+        stage ('Liferay install'){
+            steps{
+                 ansiColor('xterm') {
+                    ansiblePlaybook(
+                        playbook: '/root/.jenkins/workspace/My Pipeline/liferay_install.yml',
+                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        colorized: true)
+                }
+            }
+        }
+
+        stage ('Postgresql install'){
+            steps{
+                 ansiColor('xterm') {
+                    ansiblePlaybook(
+                        playbook: '/root/.jenkins/workspace/My Pipeline/postgresql_install.yml',
+                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
+                        colorized: true)
                 }
             }
         }
