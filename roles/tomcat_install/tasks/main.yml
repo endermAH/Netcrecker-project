@@ -1,4 +1,12 @@
 ---
+      - name: Delete directory
+        file:
+          path: '/opt/{{ item }}'
+          state: absent
+        loop:
+          - apache-tomcat-*
+          - tomcat
+      
       - name: Create new group tomcat
         group:
           name: tomcat
@@ -29,6 +37,9 @@
           src: /opt/apache-tomcat-{{req_tomcat_ver}}.tar.gz
           dest: /opt
           remote_src: yes
+          
+      - name: Renaming tomcat home
+        shell: mv /opt/apache-tomcat-{{req_tomcat_ver}}/* /opt/tomcat
 
       - name: Change mode recurse conf
         file:
