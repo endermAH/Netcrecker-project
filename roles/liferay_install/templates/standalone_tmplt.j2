@@ -157,7 +157,7 @@
         <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
-            <datasource jndi-name="java:jboss/datasources/PostgresDS" pool-name="PostgresDS" enabled="true" jta="true" use-java-context="true" use-ccm="true">
+            <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" jta="true" use-java-context="true" use-ccm="true">
                   <connection-url>jdbc:postgresql://{{ psql_ip }}/main</connection-url>
                     <driver>postgresql</driver>
                     <security>
@@ -165,7 +165,7 @@
                       <password>12345</password>
                     </security>
             </datasource>
-            <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+            <datasource jndi-name="java:jboss/datasources/HSQLDS" pool-name="HSQLDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver>h2</driver>
                     <security>
