@@ -1,5 +1,5 @@
 ---
-      - name: Delete directory
+      - name: Cleaning from previous versions
         file:
           path: '/opt/{{ item }}'
           state: absent
@@ -19,11 +19,11 @@
           system: no
           shell: /bin/bash
           createhome: yes
-          home: /opt/tomcat
+          home: '/opt/tomcat'
 
       - name: Change own directory tomcat
         file:
-          path: /opt/tomcat
+          path: '/opt/tomcat'
           state: directory
           owner: root          
 
@@ -34,8 +34,8 @@
 
       - name: Extracting downloaded tomcat
         unarchive:
-          src: /opt/apache-tomcat-{{req_tomcat_ver}}.tar.gz
-          dest: /opt
+          src: '/opt/apache-tomcat-{{req_tomcat_ver}}.tar.gz'
+          dest: '/opt'
           remote_src: yes
           
       - name: Renaming tomcat home
@@ -43,20 +43,20 @@
 
       - name: Change mode recurse conf
         file:
-          path: /opt/tomcat/conf
+          path: '/opt/tomcat/conf'
           state: directory
           recurse: yes
           mode: g+r
 
       - name: Change mode conf
         file:
-          path: /opt/tomcat/conf
+          path: '/opt/tomcat/conf'
           state: directory
           mode: g+x
 
       - name: Change group directory tomcat
         file:
-          path: /opt/tomcat/{{ item }}
+          path: '/opt/tomcat/{{ item }}'
           state: directory
           recurse: yes
           owner: root
@@ -68,7 +68,7 @@
  
       - name: Change group file tomcat
         file:
-          path: /opt/tomcat/{{ item }}
+          path: '/opt/tomcat/{{ item }}'
           state: file
           owner: root
           group: tomcat
@@ -84,7 +84,7 @@
       - name: Configure tomcat.service
         template:
           src: tomcat.service
-          dest: /etc/systemd/system/
+          dest: '/etc/systemd/system/'
 
       - name: Configure Service tomcat
         systemd:
@@ -104,26 +104,26 @@
           proto: tcp
 
       - name: Configure Tomcat users
-        template: src=tomcat-users.xml dest=/opt/tomcat/conf/tomcat-users.xml
+        template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
 
       - name: Change tomcat users
-        template: src=tomcat-users.xml dest=/opt/tomcat/conf/tomcat-users.xml
+        template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
         
       - name: Change tomcat port
-        template: src=server.xml dest=/opt/tomcat/conf/server.xml
+        template: src=server.xml dest='/opt/tomcat/conf/server.xml'
 
       - name: Change manager context
-        template: src=context_stock.xml dest=/opt/tomcat/webapps/manager/META-INF/context.xml
+        template: src=context_stock.xml dest='/opt/tomcat/webapps/manager/META-INF/context.xml'
   
       - name: Change host-manager context
-        template: src=context_host.xml dest=/opt/tomcat/webapps/host-manager/META-INF/context.xml
+        template: src=context_host.xml dest='/opt/tomcat/webapps/host-manager/META-INF/context.xml'
 
       - name: start tomcat
         shell: nohup /opt/tomcat/bin/startup.sh &
 
       - name: Tomcat /webapps ...
         file:
-          path: /opt/tomcat/{{ item }}
+          path: '/opt/tomcat/{{ item }}'
           state: directory
           recurse: yes
           owner: tomcat
