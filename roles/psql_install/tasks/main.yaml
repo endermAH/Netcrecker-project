@@ -2,7 +2,7 @@
 - name: install postgresql
   apt:
     update_cache: yes
-    name: ['postgresql', 'python-psycopg2']
+    name: ['python-psycopg2', 'postgresql']
     state: latest
 
 - name: create db

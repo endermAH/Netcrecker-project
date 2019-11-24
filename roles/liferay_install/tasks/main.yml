@@ -23,7 +23,7 @@
 - name: Move dependences to main
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
 - name: Move PSQL driver
-  shell: mv ~/postgresql-42.2.8.jar /opt/wildfly/modules/com/liferay/portal/main
+  shell: cp ~/postgresql-42.2.8.jar /opt/wildfly/modules/com/liferay/portal/main/postgresql.jar
 - name: Create module.xml files
   lineinfile:
     create: true
@@ -43,6 +43,12 @@
     filter_spec: '<filter-spec value="not(any(match(&quot;WFLYSRV0059&quot;),match(&quot;WFLYEE0007&quot;)))" />'
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
+    psql_ip: '206.189.22.48'
+- name: Create portal-ext.properties
+  lineinfile:
+    path: /opt/portal-ext.properties
+    line: jdbc.default.jndi.name=java:jboss/datasources/ExampleDS
+    create: yes
 - name: Delete all old undertow jars
   shell: "rm undertow*"
   args:
