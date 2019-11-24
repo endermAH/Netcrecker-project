@@ -1,10 +1,12 @@
 #!/bin/bash
 
-./ter_log.sh apply
+#./ter_log.sh apply
 
-jenkins_ip=$(./parse_ip jenkins)
-psql_ip=$(./parse_ip psql)
+jenkins_ip=$(./parse_ip.py jenkins)
+psql_ip=$(./parse_ip.py psql)
 liferay_ip="178.128.142.117"
+
+rm ~/.ssh/known_hosts
 
 scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
 KEY=$(cat ./key)
