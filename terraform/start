@@ -17,3 +17,15 @@ KEY=$(cat ./key)
 ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
 ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
+
+echo [jenkins] > ../inventory.ini
+echo 127.0.0.1 >> ../inventory.ini
+echo [psql] >> ../inventory.ini
+echo $psql_ip >> ../inventory.ini
+echo [liferay] >> ../inventory.ini
+echo $liferay_ip >> ../inventory.ini
+
+git push
+
+ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
+ssh root@$jenkins_ip "ansible-playbook -i inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
