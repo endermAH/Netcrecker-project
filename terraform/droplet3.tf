@@ -24,5 +24,5 @@ resource "digitalocean_droplet" "liferay" {
 
 resource "digitalocean_floating_ip_assignment" "foobar" {
   ip_address = "178.128.142.117"
-  droplet_id = digitalocean_droplet.psql.id
+  droplet_id = digitalocean_droplet.liferay.id
 }
