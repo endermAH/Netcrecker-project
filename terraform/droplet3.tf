@@ -19,7 +19,7 @@ resource "digitalocean_droplet" "liferay" {
       "apt update -y",
       "apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git",
       "useradd user",
-      "chpasswd <<< 'user:user'",
+      "echo 'user:user' | chpasswd",
     ]
   }
 }
