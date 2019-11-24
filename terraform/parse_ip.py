@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+import sys
 
 f = open('terraform.tfstate')
 json_string = f.read()
