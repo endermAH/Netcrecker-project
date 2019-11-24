@@ -9,4 +9,4 @@ parsed_string = json.loads(json_string)
 
 for i in range(0,2):
     if parsed_string['resources'][i]['name'] == sys.argv[1]:
-        print(parsed_string['resources'][0]['instances'][0]['attributes']['ipv4_address'])
+        print(parsed_string['resources'][i]['instances'][0]['attributes']['ipv4_address'])
