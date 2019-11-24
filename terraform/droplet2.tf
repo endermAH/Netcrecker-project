@@ -18,6 +18,8 @@ resource "digitalocean_droplet" "jenkins" {
     inline = [
       "apt update -y",
       "apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git",
+      "useradd admin",
+      "chpasswd <<< 'admin:admin'",
     ]
   }
 }
