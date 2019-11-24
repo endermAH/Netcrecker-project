@@ -21,8 +21,3 @@ resource "digitalocean_droplet" "psql" {
     ]
   }
 }
-
-resource "digitalocean_floating_ip_assignment" "foobar" {
-  ip_address = "68.183.253.55"
-  droplet_id = digitalocean_droplet.psql.id
-}
