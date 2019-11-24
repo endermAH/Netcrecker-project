@@ -1,0 +1,12 @@
+#!/bin/bash
+
+jenkins_ip=
+psql_ip=
+liferay_ip="178.128.142.117"
+
+./ter_log.sh apply
+
+scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
+KEY=$(cat ./key)
+ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
+ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
