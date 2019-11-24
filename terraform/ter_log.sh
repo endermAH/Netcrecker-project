@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DO_FING="24:7d:4a:b8:58:52:ff:c9:78:d9:07:02:47:75:ba:13"
+export DO_FING="1e:5b:78:b9:30:cc:35:f8:b0:ba:0c:99:99:38:28:16"
 export DO_TOKEN="98fcb6662e0ecdef1501f564390a5f42b9cbefe7689ca99a0d091b3b117c72c6"
 
 terraform $1 \
