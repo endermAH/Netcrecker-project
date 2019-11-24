@@ -8,6 +8,7 @@ liferay_ip="178.128.142.117"
 
 rm ~/.ssh/known_hosts
 
+ssh root@$jenkins_ip "ssh-keygen"
 scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
 KEY=$(cat ./key)
 ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
