@@ -28,4 +28,6 @@ echo $liferay_ip >> ../inventory.ini
 git push
 
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
+ssh root@$jenkins_ip "apt update && sudo apt upgrade -y"
+ssh root@$jenkins_ip "apt-get install -y  python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources ansible"
 ssh root@$jenkins_ip "ansible-playbook -i inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
