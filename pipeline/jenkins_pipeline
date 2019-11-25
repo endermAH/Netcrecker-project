@@ -1,75 +1,41 @@
-#!groovy
-properties ([disableConcurrentBuilds()])
-
-
 pipeline {
-    agent any
+   agent any
 
-    stages {
-        stage ('Tomcat install'){
-            steps{
-                ansiColor('xterm') {
-                     ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/tomcat_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
-                        colorized: true)
-                }
-            }
-        }
+   stages {
+      stage('Clean Workspace') {
+         steps {
+            cleanWs()
+         }
+      }
+      
+      stage('Clone git rep') {
+          steps {
+              git 'https://github.com/peoplearestrong/Netcracker.git'
+          }
+      }
 
-        stage ('Jenkins install'){
-            steps{
-                 ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/jenkins_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
-                        colorized: true)
-                }
-            }
-        }   
+      stage('PostgreSQL installation') {
+          steps {
+              ansiColor('exterm') {
+                  ansiblePlaybook(
+                      playbook: '/root/.jenkins/workspace/netcracker/roles/psql-vps-playbook.yml'
+                      inventory: '/root/.jenkins/workspace/netcracker/inventory.ini'
+                      colorized: true
+                  )
+              }
+          }
+      }
 
-        stage ('Java install'){
-            steps{
-                 ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/java_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
-                        colorized: true)
-                }
-            }
-        }
-
-        stage ('WildFly install'){
-            steps{
-                 ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/wildfly_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
-                        colorized: true)
-                }
-            }
-        }
-
-        stage ('Liferay install'){
-            steps{
-                 ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/liferay_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
-                        colorized: true)
-                }
-            }
-        }
-
-        stage ('Postgresql install'){
-            steps{
-                 ansiColor('xterm') {
-                    ansiblePlaybook(
-                        playbook: '/root/.jenkins/workspace/My Pipeline/postgresql_install.yml',
-                        inventory: '/root/.jenkins/workspace/My Pipeline/hosts',
-                        colorized: true)
-                }
-            }
-        }
-    }
+      stage('Liferay installation') {
+          steps {
+              ansiColor('exterm') {
+                  ansiblePlaybook(
+                      playbook: '/root/.jenkins/workspace/netcracker/roles/liferay-vps-playbook.yml'
+                      inventory: '/root/.jenkins/workspace/netcracker/inventory.ini'
+                      colorized: true
+                  )
+              }
+          }
+      }
+   }
 }
