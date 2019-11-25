@@ -14,10 +14,4 @@ resource "digitalocean_droplet" "jenkins" {
     private_key = "${file(var.pvt_key)}"
     timeout = "2m"
   }
-  provisioner "remote-exec" {
-    inline = [
-      "apt update && sudo apt upgrade -y",
-      "apt-get install -y python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources ansible",
-    ]
-  }
 }
