@@ -33,12 +33,6 @@ git push
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
 ssh root@$jenkins_ip "cd Netcrecker-project && git checkout terraform"
 
-ssh root@$jenkins_ip "apt update && sudo apt upgrade -y"
-ssh root@$jenkins_ip "apt-get install -y  python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources ansible unzip"
-
-ssh root@$jenkins_ip "ssh root@$psql_ip \"echo test\""
-ssh root@$jenkins_ip "ssh root@$liferay_ip \"echo test\""
-
 scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
