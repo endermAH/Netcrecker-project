@@ -39,7 +39,7 @@ ssh root@$jenkins_ip "apt-get install -y  python-pip python-yaml python-jinja2 p
 ssh root@$jenkins_ip "ssh root@$psql_ip \"echo test\""
 ssh root@$jenkins_ip "ssh root@$liferay_ip \"echo test\""
 
-scp ../liferay_files.zip root@$jenkins_ip:~/
+scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
