@@ -1,23 +1,23 @@
 #!/bin/bash
 
-# ./ter_log.sh apply
-#
+./ter_log.sh apply
+
 jenkins_ip=$(./parse_ip.py jenkins)
 echo Jenkins ip - $jenkins_ip
-# psql_ip=$(./parse_ip.py psql)
-# echo Postgresql ip - $psql_ip
-# liferay_ip="178.128.142.117"
-#
-# rm ~/.ssh/known_hosts
-#
-# echo Connecting to root@$jenkins_ip - ssh-keygen
-# ssh root@$jenkins_ip "ssh-keygen"
-# scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
-# ssh root@$jenkins_ip "cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys"
-# KEY=$(cat ./key)
-# ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
-# ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
-# rm ./key
+psql_ip=$(./parse_ip.py psql)
+echo Postgresql ip - $psql_ip
+liferay_ip="178.128.142.117"
+
+rm ~/.ssh/known_hosts
+
+echo Connecting to root@$jenkins_ip - ssh-keygen
+ssh root@$jenkins_ip "ssh-keygen"
+scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
+ssh root@$jenkins_ip "cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys"
+KEY=$(cat ./key)
+ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
+ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
+rm ./key
 
 echo [jenkins] > ../inventory.ini
 echo 127.0.0.1 >> ../inventory.ini
@@ -36,4 +36,6 @@ ssh root@$jenkins_ip "git checkout terraform"
 ssh root@$jenkins_ip "apt update && sudo apt upgrade -y"
 ssh root@$jenkins_ip "apt-get install -y  python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources ansible"
 
-ssh root@$jenkins_ip "ansible-playbook -i inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
+ssh root@$jenkins_ip "ansible-playbook -i ../inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
+ssh root@$jenkins_ip "ansible-playbook -i ../inventory.ini ~/Netcrecker-project/psql-vps-playbook.yml"
+ssh root@$jenkins_ip "ansible-playbook -i ../inventory.ini ~/Netcrecker-project/liferay-vps-playbook.yml"
