@@ -1,8 +1,0 @@
----
-# handlers file for tomcat
-
-- name: Shutdown tomcat
-  shell: bash /opt/tomcat/bin/shutdown.sh
-    
-- name: Startup tomcat
-  shell: bash /opt/tomcat/bin/startup.sh

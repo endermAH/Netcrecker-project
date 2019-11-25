@@ -97,12 +97,6 @@
           enabled: yes
           masked: no
 
-      - name: Allow all access to tcp port 80
-        ufw:
-          rule: allow
-          port: 80
-          proto: tcp
-
       - name: Configure Tomcat users
         template: src=tomcat-users.xml dest='/opt/tomcat/conf/tomcat-users.xml'
 
