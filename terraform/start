@@ -26,7 +26,7 @@ echo $psql_ip >> ../inventory.ini
 echo [liferay] >> ../inventory.ini
 echo $liferay_ip >> ../inventory.ini
 
-git add .
+git add inventory.ini
 git commit -m "SCRIPT: New inventory"
 git push
 
