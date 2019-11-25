@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ./ter_log.sh apply
+./ter_log.sh apply
 
 jenkins_ip=$(./parse_ip.py jenkins)
 echo Jenkins ip - $jenkins_ip
