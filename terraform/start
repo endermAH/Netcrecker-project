@@ -26,13 +26,15 @@ echo $psql_ip >> ../inventory.ini
 echo [liferay] >> ../inventory.ini
 echo $liferay_ip >> ../inventory.ini
 
-git add ../inventory.ini
-git commit -m "SCRIPT: New inventory"
-git push
+# git add ../inventory.ini
+# git commit -m "SCRIPT: New inventory"
+# git push
 
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
 ssh root@$jenkins_ip "cd Netcrecker-project && git checkout terraform"
+ssh root@$jenkins_ip "rm inventory.ini"
 
+scp ../inventory.ini root@$jenkins_ip:~/Netcrecker-project/
 scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
