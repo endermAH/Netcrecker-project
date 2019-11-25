@@ -40,7 +40,7 @@ ssh root@$jenkins_ip "ssh root@$psql_ip \"echo test\""
 ssh root@$jenkins_ip "ssh root@$liferay_ip \"echo test\""
 
 scp ../liferay_files.zip root@jenkins_ip:~/
-ssh root@$jenkins_ip "unzip liferay_files.zip -d ~/"
+ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/psql-vps-playbook.yml"
