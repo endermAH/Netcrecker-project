@@ -8,7 +8,7 @@ resource "digitalocean_droplet" "jenkins" {
     "${var.ssh_fingerprint}"
   ]
   connection {
-    host = "${digitalocean_droplet.liferay.ipv4_address}"
+    host = "${digitalocean_droplet.jenkins.ipv4_address}"
     user = "root"
     type = "ssh"
     private_key = "${file(var.pvt_key)}"
