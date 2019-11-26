@@ -1,7 +1,7 @@
 
 ---
 # vars file for plugins_install
-  jenkins_ip: 10.8.0.150
+  jenkins_ip: 127.0.0.1
   jenkins_port: 38000
   jenkins_path: /root/.jenkins/
   job_name: netcracker
