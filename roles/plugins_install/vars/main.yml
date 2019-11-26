@@ -1,0 +1,6 @@
+
+---
+# vars file for plugins_install
+  jenkins_ip: 10.8.0.150
+  jenkins_port: 38000
+  jenkins_path: /opt/tomcat/webapps/jenkins
