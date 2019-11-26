@@ -36,7 +36,8 @@ scp ../inventory.ini root@$jenkins_ip:~/Netcrecker-project/
 scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
+ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/tomcat_install.yml"
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins_install.yml"
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/configure_jenkins.yml"
-ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/tomcat_install.yml"
+
 ssh root@$jenkins_ip "curl http://127.0.0.1:8080/jenkins/job/netcracker/build?token=START_PIPELINE "
