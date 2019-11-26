@@ -1,7 +1,7 @@
 
 ---
   - name: Install jenkins plugins
-    hosts: wildfly
+    hosts: jenkins
     gather_facts: no
     become: yes
     become_user: root
