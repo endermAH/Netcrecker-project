@@ -1,0 +1,35 @@
+
+---
+# tasks file for plugins_install
+- name: Install jenkins-cli.jar
+  get_url:
+    url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/jnlpJars/jenkins-cli.jar" # ЗАМЕНА IP АДРЕСА НА ПЕРЕМЕННУЮ
+    dest: "{{jenkins_path}}" # можно заменить путь
+
+- name: Install jenkins plugins
+  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
+  loop:
+    - cloudbees-folder # Folders
+    - antisamy-markup-formatter # OWASP Markup Formatter
+    - build-timeout # Build Timeout
+    - credentials-binding # Credentials Binding
+    - timestamper # Timestamper
+    - ws-cleanup # Workspace Cleanup
+    - ant # Ant
+    - gradle # Gradle
+    - workflow-aggregator # Pipeline
+    - github-branch-source # GitHub Branch Source
+    - pipeline-github-lib # Pipeline: GitHub Groovy Libraries
+    - pipeline-stage-view # Pipeline: Stage View
+    - git # Git
+    - subversion # Subversion
+    - ssh-slaves # SSH Slaves
+    - matrix-auth # Matrix Authorization Strategy
+    - pam-auth # PAM Authentication
+    - ldap # LDAP
+    - email-ext # Email Extension
+    - ansible # Ansible
+    - ansicolor # AnsiColor
+
+- name: Restart jenkins
+  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"

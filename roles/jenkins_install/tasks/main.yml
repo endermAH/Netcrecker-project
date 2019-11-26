@@ -1,29 +1,22 @@
 ---
+# tasks file for jenkins_install
+
+- name: Shutdown tomcat
+  shell: bash /opt/tomcat/bin/shutdown.sh
+
 - name: Download Jenkins
   get_url:
-    url: http://mirrors.jenkins.io/war/latest/jenkins.war
-    dest: /opt/tomcat/latest/webapps/
-- name: Fix AWT error - apt ttf-dejavu & fontconfig
-  apt:
-    update_cache: yes
-    name: ['ttf-dejavu', 'fontconfig']
-# # - name: Install python-jenkins & lxml
-# #   apt:
-# #     update_cache: yes
-# #     name: lxml
-# - name:
-#   pip:
-#     name: python-jenkins
-# - name:
-#   pip:
-#     name: lxml
-# - name:
-#   jenkins_job:
-#     config: ~/Netcrecker-project/jenkins_job.xml
-#     #enabled: true
-#     name: main
-#     user: root
-#     password: toor
-#     url: http://127.0.0.1:8080/jenkins
-- name: Start Tomcat
-  shell: /opt/tomcat/latest/bin/catalina.sh start
+    url: "{{jenkins_url}}"
+    dest: /opt/tomcat/webapps
+
+- name: Inatall Jenkins
+  shell: nohup java -Djenkins.install.runSetupWizard=false -jar /opt/tomcat/webapps/jenkins.war &
+
+- name: Startup tomcat
+  shell: nohup /opt/tomcat/bin/startup.sh &
+
+- name: Shutdown and Startup tomcat
+  shell: bash /opt/tomcat/bin/{{ item }}
+  loop:
+    - shutdown.sh
+    - startup.sh

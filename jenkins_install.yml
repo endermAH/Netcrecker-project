@@ -1,0 +1,8 @@
+---
+- name: Install and configure tomcat
+  hosts: jenkins
+  gather_facts: false
+  become: yes
+
+  roles:
+    - jenkins_install

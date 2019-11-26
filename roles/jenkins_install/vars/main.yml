@@ -1,0 +1,3 @@
+---
+# vars file for jenkins_install
+jenkins_url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war 
