@@ -18,8 +18,8 @@ resource "digitalocean_droplet" "jenkins" {
     inline = [
       "apt update -y",
       "apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git",
-      "apt install ansible",
-      "apt install unzip"
+      "apt install -y ansible",
+      "apt install -y unzip"
     ]
   }
 }
