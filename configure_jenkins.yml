@@ -1,4 +1,3 @@
-
 ---
   - name: Install jenkins plugins
     hosts: jenkins
