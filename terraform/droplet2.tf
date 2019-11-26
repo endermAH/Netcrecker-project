@@ -17,7 +17,9 @@ resource "digitalocean_droplet" "jenkins" {
   provisioner "remote-exec" {
     inline = [
       "apt update -y",
-      "apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git unzip",
+      "apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git",
+      "apt install ansible",
+      "apt install unzip"
     ]
   }
 }
