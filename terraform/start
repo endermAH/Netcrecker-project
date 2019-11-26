@@ -11,7 +11,7 @@ liferay_ip="178.128.142.117"
 rm ~/.ssh/known_hosts
 
 echo Connecting to root@$jenkins_ip - ssh-keygen
-ssh root@$jenkins_ip "ssh-keygen"
+ssh root@$jenkins_ip "ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ''"
 scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
 ssh root@$jenkins_ip "cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys"
 KEY=$(cat ./key)
