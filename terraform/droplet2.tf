@@ -21,3 +21,7 @@ resource "digitalocean_droplet" "jenkins" {
     ]
   }
 }
+resource "digitalocean_floating_ip_assignment" "foobar" {
+  ip_address = "178.128.139.129"
+  droplet_id = digitalocean_droplet.jenkins.id
+}
