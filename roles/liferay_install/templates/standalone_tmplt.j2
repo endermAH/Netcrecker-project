@@ -158,7 +158,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
             <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" jta="true" use-java-context="true" use-ccm="true">
-                  <connection-url>jdbc:postgresql://{{ psql_ip }}/main</connection-url>
+                  <connection-url>jdbc:postgresql:5432//{{ psql_ip }}/main</connection-url>
                     <driver>postgresql</driver>
                     <security>
                       <user-name>dd</user-name>
@@ -180,6 +180,7 @@
                     </driver>
                     <driver name="postgresql" module="org.postgres">
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+                        <driver-class>org.postgresql.Driver</driver-class>
                     </driver>
                 </drivers>
             </datasources>
