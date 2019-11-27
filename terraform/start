@@ -29,6 +29,7 @@ echo [liferay] >> ../inventory.ini
 echo $liferay_ip >> ../inventory.ini
 
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
+ssh root@$jenkins_ip "cd ~/Netcrecker-project && git checkout test"
 ssh root@$jenkins_ip "rm ~/Netcrecker-project/inventory.ini"
 
 scp ../inventory.ini root@$jenkins_ip:~/Netcrecker-project/
