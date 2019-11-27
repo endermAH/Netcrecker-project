@@ -22,3 +22,6 @@
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy
     state: touch
+- name: Start liferay
+  shell: /opt/wildfly/bin/standalone.sh
+  ignore_errors: yes
