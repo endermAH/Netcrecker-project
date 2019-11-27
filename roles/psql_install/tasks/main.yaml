@@ -17,7 +17,7 @@
     user: dd
     encrypted: yes
     password: md5827ccb0eea8a706c4c34a16891f84e7b
-- name: enable postgresql and start
+- name: Enable postgresql and start
   become: yes
   become_user: postgres
   systemd:
