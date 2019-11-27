@@ -16,7 +16,8 @@
   postgresql_user:
     db: main
     user: dd
-    password: '12345'
+    encrypted: yes
+    password: md5a90c9cd9625d1ca11dfc1728aca138b7
 - name: enable postgresql and start
   become: yes
   become_user: postgres
