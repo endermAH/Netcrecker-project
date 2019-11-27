@@ -2,7 +2,7 @@
 
 ./ter_log.sh apply
 
-jenkins_ip=$(./parse_ip.py jenkins)
+jenkins_ip="178.128.139.129"
 echo Jenkins ip - $jenkins_ip
 psql_ip=$(./parse_ip.py psql)
 echo Postgresql ip - $psql_ip

@@ -5,13 +5,13 @@ resource "digitalocean_droplet" "liferay" {
   size = "s-1vcpu-3gb"
   private_networking = true
   ssh_keys = [
-    "${var.ssh_fingerprint}"
+    var.ssh_fingerprint
   ]
   connection {
-    host = "${digitalocean_droplet.liferay.ipv4_address}"
+    host = digitalocean_droplet.liferay.ipv4_address
     user = "root"
     type = "ssh"
-    private_key = "${file(var.pvt_key)}"
+    private_key = file(var.pvt_key)
     timeout = "2m"
   }
   provisioner "remote-exec" {
