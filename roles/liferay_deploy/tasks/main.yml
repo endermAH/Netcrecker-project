@@ -25,3 +25,5 @@
 - name: Start liferay
   shell: /opt/wildfly/bin/standalone.sh
   ignore_errors: yes
+- debug:
+    msg: Finish *************
