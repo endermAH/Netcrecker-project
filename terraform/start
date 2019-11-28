@@ -4,7 +4,7 @@
 
 jenkins_ip="178.128.139.237"
 echo Jenkins ip - $jenkins_ip
-psql_ip=$(./parse_ip.py psql)
+psql_ip="134.209.137.88"
 echo Postgresql ip - $psql_ip
 liferay_ip="178.128.142.117"
 
@@ -21,17 +21,10 @@ ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
 ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
-echo [jenkins] > ../inventory.ini
-echo 127.0.0.1 >> ../inventory.ini
-echo [psql] >> ../inventory.ini
-echo $psql_ip >> ../inventory.ini
-echo [liferay] >> ../inventory.ini
-echo $liferay_ip >> ../inventory.ini
 
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
 ssh root@$jenkins_ip "rm ~/Netcrecker-project/inventory.ini"
 
-scp ../inventory.ini root@$jenkins_ip:~/Netcrecker-project/
 scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 

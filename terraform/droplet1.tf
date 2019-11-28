@@ -21,3 +21,8 @@ resource "digitalocean_droplet" "psql" {
     ]
   }
 }
+
+resource "digitalocean_floating_ip_assignment" "psql_fip" {
+  ip_address = "134.209.137.88"
+  droplet_id = digitalocean_droplet.jenkins.id
+}
