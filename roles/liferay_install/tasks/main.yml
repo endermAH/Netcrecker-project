@@ -16,7 +16,7 @@
 - name: Remove all files
   shell: rm -rf /opt/wildfly/modules/com/liferay/portal/main/*
 - name: Unzip dependences
-  shell: unzip ~/liferay/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main
+  shell: "unzip {{ liferay_download_path }}/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main"
 - name: Move dependences to main
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
 - name: Create folder for PSQL driver
@@ -41,7 +41,7 @@
   with_items:
     "{{ module_xml_list }}"
 - name: Unzip OSGi
-  shell: rm -rf /opt/osgi/* && unzip ~/liferay/liferay-ce-portal-osgi-*.zip -d /opt/osgi
+  shell: "rm -rf /opt/osgi/* && unzip {{ liferay_download_path }}/liferay-ce-portal-osgi-*.zip -d /opt/osgi"
 - name: Move osgi to osgi
   shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
 - name: Modify standalone.xml
