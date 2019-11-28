@@ -22,3 +22,5 @@
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy
     state: touch
+- name: Start Liferay
+  shell: "nohup /opt/wildfly/standalone/deployments/ROOT.war.dodeploy </dev/null >/dev/null 2>&1 &"
