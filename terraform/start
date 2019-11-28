@@ -6,7 +6,7 @@ jenkins_ip=$(./parse_ip.py jenkins)
 echo Jenkins ip - $jenkins_ip
 psql_ip=$(./parse_ip.py psql)
 echo Postgresql ip - $psql_ip
-liferay_ip="178.128.142.117"
+liferay_ip="134.209.137.97"
 
 rm ~/.ssh/known_hosts
 
