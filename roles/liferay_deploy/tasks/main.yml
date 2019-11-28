@@ -11,7 +11,7 @@
 - name: Unarchive war
   unarchive:
     remote_src: yes
-    src: /root/liferay/liferay-ce-portal-7.2.0-ga1-20190531153709761.war
+    src: "{{ liferay_download_path }}/liferay-ce-portal-7.2.1-ga2-20191111141448326.war"
     dest: /opt/wildfly/standalone/deployments/ROOT.war/
 # - name: Cp liferay war
 #   copy:
@@ -22,3 +22,5 @@
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy
     state: touch
+- name: Start Liferay
+  shell: "nohup /opt/wildfly/standalone/deployments/ROOT.war.dodeploy </dev/null >/dev/null 2>&1 &"
