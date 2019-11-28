@@ -4,6 +4,16 @@
     update_cache: yes
     name: ['python-psycopg2', 'postgresql']
     state: latest
+- name: postgresql.conf
+  lineinfile:
+    path: /etc/postgresql/10/main/postgresql.conf
+    regexp: '^#listen_addresses = '
+    line: listen_addresses = '*'
+- name: pg_hba.conf
+  lineinfile:
+    path: /etc/postgresql/10/main/pg_hba.conf
+    regexp: '^hostssl  all  dd  0.0.0.0/0  md5 '
+    line: hostssl  all  dd  0.0.0.0/0  md5
 - name: create db
   become: yes
   become_user: postgres
