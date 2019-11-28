@@ -18,7 +18,7 @@
 - name: Unzip dependences
   shell: "unzip {{ liferay_download_path }}/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main"
 - name: Move dependences to main
-  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
+  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-*
 - name: Create folder for PSQL driver
   file:
     path: "{{ item }}"
