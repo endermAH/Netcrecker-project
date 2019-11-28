@@ -2,6 +2,8 @@
   when:
     - use_remote_links == true
   block:
+    - name: Create download directories
+      shell: mkdir -p ~/liferay_files/{liferay, undertow}
     - name: Remote download Liferay dependences, osgi and portal
       get_url:
         url: "{{ item }}"
