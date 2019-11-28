@@ -43,7 +43,7 @@
 - name: Unzip OSGi
   shell: "rm -rf /opt/osgi/* && unzip {{ liferay_download_path }}/liferay-ce-portal-osgi-*.zip -d /opt/osgi"
 - name: Move osgi to osgi
-  shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
+  shell: mv /opt/osgi/liferay-ce-portal-osgi-*/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
 - name: Modify standalone.xml
   template:
     src: standalone_tmplt.j2
