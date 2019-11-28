@@ -9,4 +9,5 @@
     - "{{ java_installer }}"
     - tomcat_install
     - jenkins_install
-    - jobinsert_role
+    - configure_jenkins
+#    - jobinsert_role

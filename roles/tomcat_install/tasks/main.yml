@@ -89,7 +89,8 @@
 - name: Configure Service tomcat
   systemd:
     daemon_reload: yes
-    daemon_reexec: yes
+    name: tomcat
+    state: started
 
 - name: Start tomcat
   systemd:
