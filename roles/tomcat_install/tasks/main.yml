@@ -83,7 +83,7 @@
 
 - name: Configure tomcat.service
   template:
-    src: tomcat.service
+    src: service.tomcat-tmplt.j2
     dest: "/etc/systemd/system/"
 
 - name: Configure Service tomcat
