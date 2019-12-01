@@ -45,3 +45,6 @@
   loop:
     - shutdown.sh
     - startup.sh
+
+- pause:
+    seconds: 15
