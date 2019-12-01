@@ -22,7 +22,7 @@
     - startup.sh
 
 - pause:
-    seconds: 15
+    seconds: 30
 
 - name: Change jenkins config.xml
   template:
