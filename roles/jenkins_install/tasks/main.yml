@@ -27,7 +27,7 @@
 - name: Change jenkins config.xml
   template:
     src: jenkins_config.xml
-    dest: /root/.jenkins/config.xml
+    dest: '/root/.jenkins/config.xml'
 
 - pause:
     seconds: 15
@@ -35,7 +35,7 @@
 - name: Change jenkins config.xml users
   template:
     src: jenkins_config_and_users.xml
-    dest: /root/.jenkins/config.xml
+    dest: '/root/.jenkins/config.xml'
 
 - name: Startup tomcat
   shell: nohup /opt/tomcat/bin/startup.sh &
