@@ -5,11 +5,11 @@
     url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/jnlpJars/jenkins-cli.jar" # ЗАМЕНА IP АДРЕСА НА ПЕРЕМЕННУЮ
     dest: "{{jenkins_path}}" # можно заменить путь
 
-- name: Restart jenkins
-  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"
-
-- pause:
-    seconds: 40
+# # - name: Restart jenkins
+# #   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"
+#
+# - pause:
+#     seconds: 40
 
 - name: Add User admin to jenkins
   shell: echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin","admin")' | java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ groovy =
