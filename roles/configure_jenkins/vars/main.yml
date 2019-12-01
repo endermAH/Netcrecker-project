@@ -1,6 +1,7 @@
 
 ---
 # vars file for plugins_install
-  jenkins_ip: 127.0.0.1
+  jenkins_ip_local: 127.0.0.1
+  jenkins_ip_external: 134.209.137.151
   jenkins_port: 8080
   jenkins_path: /root/.jenkins
