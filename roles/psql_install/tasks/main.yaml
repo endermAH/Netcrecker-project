@@ -27,6 +27,7 @@
     user: dd
     password: md5a90c9cd9625d1ca11dfc1728aca138b7
     encrypted: yes
+    role_attr_flags: CREATEDB,SUPERUSER,CREATEROLE
 - name: Enable postgresql and start
   become: yes
   become_user: postgres
@@ -34,3 +35,5 @@
     name: postgresql
     state: started
     enabled: yes
+- name: Restart psql
+  shell: systemctl restart postgresql
