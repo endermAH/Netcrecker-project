@@ -53,11 +53,11 @@
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
     psql_ip: '134.209.137.88'
-# - name: Create portal-ext.properties
-#   lineinfile:
-#     path: /opt/portal-ext.properties
-#     line: jdbc.default.jndi.name=java:jboss/datasources/ExampleDS
-#     create: yes
+- name: Create portal-ext.properties
+  lineinfile:
+    path: /opt/portal-ext.properties
+    line: jdbc.default.jndi.name=java:jboss/datasources/ExampleDS
+    create: yes
 - name: Delete all old undertow jars
   shell: "rm undertow*"
   args:
