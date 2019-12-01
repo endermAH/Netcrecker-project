@@ -22,7 +22,7 @@
     - startup.sh
 
 - pause:
-    seconds: 10
+    seconds: 15
 
 - name: Change jenkins config.xml
   template:
@@ -30,9 +30,9 @@
     dest: /root/.jenkins/config.xml
 
 - pause:
-    seconds: 10
+    seconds: 15
 
-- name: Chanfe jenkins config.xml users
+- name: Change jenkins config.xml users
   template:
     src: jenkins_config_and_users.xml
     dest: /root/.jenkins/config.xml
