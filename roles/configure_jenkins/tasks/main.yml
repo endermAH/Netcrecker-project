@@ -1,15 +1,9 @@
-
 ---
 # tasks file for plugins_install
 - name: Install jenkins-cli.jar
   get_url:
     url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/jnlpJars/jenkins-cli.jar" # ЗАМЕНА IP АДРЕСА НА ПЕРЕМЕННУЮ
     dest: "{{jenkins_path}}" # можно заменить путь
-
-- name: Configure Global Security "Enable security"
-  template: 
-    src: jenkins_config.xml
-    dest: '/root/.jenkins/config.xml'
 
 - name: Restart jenkins
   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"
@@ -48,11 +42,5 @@
     - ansible # Ansible
     - ansicolor # AnsiColor
 
-- name: Add job to jenkins
-  shell: java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins -auth root:toor create-job {{job_name}} < {{jenkins_path}}/{{job_xml}}
-
 - name: Restart jenkins
   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/ restart"
-
-- name: Start pipeline
-  shell: http://{{jenkins_ip}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE 

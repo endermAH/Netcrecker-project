@@ -9,8 +9,33 @@
     url: "{{jenkins_url}}"
     dest: /opt/tomcat/webapps
 
-- name: Inatall Jenkins
-  shell: nohup java -Djenkins.install.runSetupWizard=false -jar /opt/tomcat/webapps/jenkins.war &
+#- name: Inatall Jenkins
+#  shell: nohup java -Djenkins.install.runSetupWizard=false -jar /opt/tomcat/webapps/jenkins.war &
+
+- name: Startup tomcat
+  shell: nohup /opt/tomcat/bin/startup.sh &
+
+- name: Shutdown and Startup tomcat
+  shell: bash /opt/tomcat/bin/{{ item }}
+  loop:
+    - shutdown.sh
+    - startup.sh
+
+- pause:
+    seconds: 10
+
+- name: Change jenkins config.xml
+  template:
+    src: jenkins_config.xml
+    dest: /root/.jenkins/config.xml
+
+- pause:
+    seconds: 10
+
+- name: Chanfe jenkins config.xml users
+  template:
+    src: jenkins_config_and_users.xml
+    dest: /root/.jenkins/config.xml
 
 - name: Startup tomcat
   shell: nohup /opt/tomcat/bin/startup.sh &
