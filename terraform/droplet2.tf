@@ -21,3 +21,8 @@ resource "digitalocean_droplet" "jenkins" {
     ]
   }
 }
+
+resource "digitalocean_floating_ip_assignment" "jenkins_fip" {
+  ip_address = "134.209.137.151"
+  droplet_id = digitalocean_droplet.liferay.id
+}
