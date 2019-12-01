@@ -2,6 +2,7 @@
 - hosts: jenkins
   vars:
     java_installer: java_apt_install
+  become: yes
   remote_user: root
   gather_facts: false
 
