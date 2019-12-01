@@ -1,6 +1,10 @@
 #!/bin/bash
 
-./ter_log.sh apply
+while [1]
+  do
+    ./ter_log.sh apply
+    [$? -eq 0] && break
+  done
 
 jenkins_ip="178.128.139.237"
 echo Jenkins ip - $jenkins_ip
