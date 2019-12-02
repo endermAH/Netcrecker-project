@@ -46,7 +46,7 @@
     - startup.sh
 
 - pause:
-    seconds: 40
+    seconds: 50
 
 - name: Add job to jenkins
   shell: "java -jar /root/.jenkins/jenkins-cli.jar -s http://134.209.137.151:8080/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
