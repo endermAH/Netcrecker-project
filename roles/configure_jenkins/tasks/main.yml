@@ -54,4 +54,4 @@
 # shell: java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins create-job {{job_name}} < {{job_path}}/{{job_xml}}
 
 - name: Start pipeline
-  shell: http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE
+  shell: curl http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE
