@@ -4,7 +4,16 @@
     update_cache: yes
     name: ['python-psycopg2', 'postgresql']
     state: latest
-
+- name: postgresql.conf
+  lineinfile:
+    path: /etc/postgresql/10/main/postgresql.conf
+    regexp: '^#listen_addresses = '
+    line: listen_addresses = '*'
+- name: pg_hba.conf
+  lineinfile:
+    path: /etc/postgresql/10/main/pg_hba.conf
+    regexp: '^hostssl  all  dd  0.0.0.0/0  md5 '
+    line: hostssl  all  dd  0.0.0.0/0  md5
 - name: create db
   become: yes
   become_user: postgres
@@ -16,12 +25,15 @@
   postgresql_user:
     db: main
     user: dd
-    encrypted: yes
     password: md5a90c9cd9625d1ca11dfc1728aca138b7
-- name: enable postgresql and start
+    encrypted: yes
+    role_attr_flags: CREATEDB,SUPERUSER,CREATEROLE
+- name: Enable postgresql and start
   become: yes
   become_user: postgres
   systemd:
     name: postgresql
     state: started
     enabled: yes
+- name: Restart psql
+  shell: systemctl restart postgresql

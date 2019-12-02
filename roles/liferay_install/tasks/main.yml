@@ -16,9 +16,9 @@
 - name: Remove all files
   shell: rm -rf /opt/wildfly/modules/com/liferay/portal/main/*
 - name: Unzip dependences
-  shell: unzip ~/liferay/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main
+  shell: "unzip {{ liferay_download_path }}/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main"
 - name: Move dependences to main
-  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-7.2.0-ga1
+  shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-*
 - name: Create folder for PSQL driver
   file:
     path: "{{ item }}"
@@ -41,9 +41,9 @@
   with_items:
     "{{ module_xml_list }}"
 - name: Unzip OSGi
-  shell: rm -rf /opt/osgi/* && unzip ~/liferay/liferay-ce-portal-osgi-*.zip -d /opt/osgi
+  shell: "rm -rf /opt/osgi/* && unzip {{ liferay_download_path }}/liferay-ce-portal-osgi-*.zip -d /opt/osgi"
 - name: Move osgi to osgi
-  shell: mv /opt/osgi/liferay-ce-portal-osgi-7.2.0-ga1/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
+  shell: mv /opt/osgi/liferay-ce-portal-osgi-*/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
 - name: Modify standalone.xml
   template:
     src: standalone_tmplt.j2
@@ -52,12 +52,12 @@
     filter_spec: '<filter-spec value="not(any(match(&quot;WFLYSRV0059&quot;),match(&quot;WFLYEE0007&quot;)))" />'
     deployment_timeout: 'deployment-timeout="600"'
     jsp_config: '<jsp-config development="true" source-vm="1.8" target-vm="1.8" />'
-    psql_ip: '159.65.83.29'
-# - name: Create portal-ext.properties
-#   lineinfile:
-#     path: /opt/portal-ext.properties
-#     line: jdbc.default.jndi.name=java:jboss/datasources/ExampleDS
-#     create: yes
+    psql_ip: '134.209.137.88'
+- name: Create portal-ext.properties
+  lineinfile:
+    path: /opt/portal-ext.properties
+    line: jdbc.default.jndi.name=java:jboss/datasources/ExampleDS
+    create: yes
 - name: Delete all old undertow jars
   shell: "rm undertow*"
   args:
@@ -67,7 +67,7 @@
     - "/opt/wildfly/modules/system/layers/base/io/undertow/servlet/main"
     - "/opt/wildfly/modules/system/layers/base/io/undertow/core/main"
 - name: Copy new undertow jars
-  shell: "cp {{ undertow_download_path }}/undertow/undertow-{{ item }}* /opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
+  shell: "cp {{ undertow_download_path }}/undertow-{{ item }}* /opt/wildfly/modules/system/layers/base/io/undertow/{{ item }}/main"
   with_items:
     - "websocket"
     - "servlet"
