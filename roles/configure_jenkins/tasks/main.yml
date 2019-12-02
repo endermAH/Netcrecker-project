@@ -50,8 +50,6 @@
 
 - name: Add job to jenkins
   shell: "java -jar /root/.jenkins/jenkins-cli.jar -s http://127.0.0.1:8080/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
-#  shell: java -jar /root/.jenkins/jenkins-cli.jar -s http://134.209.137.151:8080/jenkins create-job netcarcker < /root/Netcrecker-project/export.xml
-# shell: java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins create-job {{job_name}} < {{job_path}}/{{job_xml}}
 
 - name: Start pipeline
   shell: curl http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE
