@@ -1,10 +1,18 @@
-<?xml version='1.1' encoding='UTF-8'?>
+?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.36">
-  <actions/>
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.4.0"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.4.0">
+      <jobProperties/>
+      <triggers/>
+      <parameters/>
+      <options/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.76">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.77">
     <script>pipeline {
    agent any
 
@@ -12,12 +20,13 @@
       stage(&apos;Clean Workspace&apos;) {
          steps {
             cleanWs()
+            deleteDir()
          }
       }
-      
+
       stage(&apos;Clone git rep&apos;) {
           steps {
-              git &apos;https://github.com/peoplearestrong/Netcracker.git&apos;
+              git &apos;https://github.com/endermAH/Netcrecker-project.git&apos;
           }
       }
 
@@ -25,8 +34,8 @@
           steps {
               ansiColor(&apos;exterm&apos;) {
                   ansiblePlaybook(
-                      playbook: &apos;/root/.jenkins/workspace/netcracker/roles/psql-vps-playbook.yml&apos;
-                      inventory: &apos;/root/.jenkins/workspace/netcracker/inventory.ini&apos;
+                      playbook: &apos;/root/.jenkins/workspace/netcracker/psql-vps-playbook.yml&apos;,
+                      inventory: &apos;/root/.jenkins/workspace/netcracker/inventory.ini&apos;,
                       colorized: true
                   )
               }
@@ -37,8 +46,8 @@
           steps {
               ansiColor(&apos;exterm&apos;) {
                   ansiblePlaybook(
-                      playbook: &apos;/root/.jenkins/workspace/netcracker/roles/liferay-vps-playbook.yml&apos;
-                      inventory: &apos;/root/.jenkins/workspace/netcracker/inventory.ini&apos;
+                      playbook: &apos;/root/.jenkins/workspace/netcracker/liferay-vps-playbook.yml&apos;,
+                      inventory: &apos;/root/.jenkins/workspace/netcracker/inventory.ini&apos;,
                       colorized: true
                   )
               }
