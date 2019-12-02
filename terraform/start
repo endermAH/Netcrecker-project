@@ -34,4 +34,4 @@ ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/N
 # ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins_install.yml"
 # ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/configure_jenkins.yml"
 
-ssh root@$jenkins_ip "curl http://127.0.0.1:8080/jenkins/job/netcracker/build?token=START_PIPELINE "
+# ssh root@$jenkins_ip "curl http://127.0.0.1:8080/jenkins/job/netcracker/build?token=START_PIPELINE "
