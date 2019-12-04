@@ -53,6 +53,12 @@
               }
           }
       }
+
+      stage(&apos;Start Liferay&apos;) {
+        steps {
+            sh &apos;ssh root@178.128.142.117 "nohup /opt/wildfly/bin/standalone.sh > log.liferay &"&apos;
+        }
+      }
    }
 }</script>
     <sandbox>true</sandbox>
