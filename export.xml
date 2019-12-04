@@ -14,7 +14,7 @@
             cleanWs()
          }
       }
-      
+
       stage(&apos;Clone git rep&apos;) {
           steps {
               git &apos;https://github.com/peoplearestrong/Netcracker.git&apos;
@@ -43,6 +43,12 @@
                   )
               }
           }
+      }
+
+      stage(&apos;Start Liferay&apos;) {
+        steps {
+            sh &apos;ssh root@178.128.142.117 "nohup /opt/wildfly/bin/standalone.sh > log.liferay &"&apos;
+        }
       }
    }
 }</script>
