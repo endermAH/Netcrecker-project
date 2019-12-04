@@ -33,9 +33,6 @@
     - ansible # Ansible
     - ansicolor # AnsiColor
 
-# - name: Restart jenkins
-#   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ restart"
-
 - name: Startup tomcat
   shell: nohup /opt/tomcat/bin/startup.sh &
 
@@ -52,7 +49,7 @@
   register: result
   until: result.status == 200
   retries: 200
-  delay: 1
+  delay: 5
 
 - name: Add job to jenkins
   shell: "java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
