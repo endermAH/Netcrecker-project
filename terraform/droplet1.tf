@@ -14,12 +14,6 @@ resource "digitalocean_droplet" "psql" {
     private_key = file(var.pvt_key)
     timeout = "2m"
   }
-  provisioner "remote-exec" {
-    inline = [
-      "apt update -y",
-      "apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git",
-    ]
-  }
 }
 
 resource "digitalocean_floating_ip_assignment" "psql_fip" {
