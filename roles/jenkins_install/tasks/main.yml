@@ -16,7 +16,7 @@
   shell: bash /opt/tomcat/bin/{{ item }}
   loop:
     - shutdown.sh
-    - startup.sh
+    # - startup.sh
 
 - pause:
     seconds: 40
