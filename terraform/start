@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NORMAL='\033[0m'
+
 ./ter_log.sh apply
 
 
