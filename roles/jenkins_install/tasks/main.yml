@@ -21,10 +21,10 @@
 # - pause:
 #     seconds: 40
 
-- name: Change jenkins config.xml
-  template:
-    src: jenkins_config.xml
-    dest: '/root/.jenkins/config.xml'
+# - name: Change jenkins config.xml
+#   template:
+#     src: jenkins_config.xml
+#     dest: '/root/.jenkins/config.xml'
 
 - name: Change jenkins config.xml users
   template:
