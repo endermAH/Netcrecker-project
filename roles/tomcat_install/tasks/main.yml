@@ -86,6 +86,22 @@
     src: tomcat.service
     dest: "/etc/systemd/system/"
 
+# - name: start tomcat
+#   shell: nohup /opt/tomcat/bin/startup.sh &
+
+- name: Tomcat /webapps ...
+  file:
+    path: "/opt/tomcat/{{ item }}"
+    state: directory
+    recurse: yes
+    owner: tomcat
+    group: tomcat
+  loop:
+    - webapps
+    - work
+    - temp
+    - logs
+
 - name: Configure Service tomcat
   systemd:
     daemon_reload: yes
@@ -121,19 +137,3 @@
   template:
     src: context_host.xml
     dest: '/opt/tomcat/webapps/host-manager/META-INF/context.xml'
-
-# - name: start tomcat
-#   shell: nohup /opt/tomcat/bin/startup.sh &
-
-- name: Tomcat /webapps ...
-  file:
-    path: "/opt/tomcat/{{ item }}"
-    state: directory
-    recurse: yes
-    owner: tomcat
-    group: tomcat
-  loop:
-    - webapps
-    - work
-    - temp
-    - logs
