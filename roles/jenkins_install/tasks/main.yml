@@ -42,7 +42,7 @@
 #
 - name: Wait for Tomcat to come up
   uri:
-    url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins"
+    url: "http://127.0.01:{{jenkins_port}}/jenkins"
     status_code: 200
   register: result
   until: result.status == 200
