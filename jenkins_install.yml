@@ -2,7 +2,7 @@
 - name: Install and configure tomcat
   hosts: jenkins
   gather_facts: false
-  become: yes
+  remote_user: root
 
   roles:
     - jenkins_install

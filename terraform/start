@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NORMAL='\033[0m'
+
 ./ter_log.sh apply
 
 
@@ -23,15 +25,15 @@ ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
-# ssh root@$jenkins_ip "cd Netcrecker-project && git checkout feature/liferay_reload"
+ssh root@$jenkins_ip "cd Netcrecker-project && git checkout testi"
 
 scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
-ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/psql-vps-playbook.yml"
-ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/liferay-vps-playbook.yml"
+# ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/psql-vps-playbook.yml"
+# ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/liferay-vps-playbook.yml"
 # ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins_install.yml"
 # ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/configure_jenkins.yml"
 
-ssh root@$jenkins_ip "curl http://127.0.0.1:8080/jenkins/job/netcracker/build?token=START_PIPELINE "
+# ssh root@$jenkins_ip "curl http://127.0.0.1:8080/jenkins/job/netcracker/build?token=START_PIPELINE "
