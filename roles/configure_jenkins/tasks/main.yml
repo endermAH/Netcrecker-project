@@ -8,8 +8,19 @@
 - name: Add User admin to jenkins
   shell: echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin","admin")' | java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ groovy =
 
+<<<<<<< HEAD
 - pause:
     seconds: 15
+=======
+- name: Wait for Tomcat to come up
+  uri:
+    url: "http://127.0.0.1:8080/jenkins"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 200
+  delay: 5
+>>>>>>> 893ce50e5b5542a5e6721f30f7ca84e89c6f2704
 
 - name: Install jenkins plugins
   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
