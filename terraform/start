@@ -4,20 +4,20 @@ NORMAL='\033[0m'
 GREEN='\033[0;32m'
 MAGENTA='\033[0;35m'
 
-echo -en [${MAGENTA}TERRAFORM:${NORMAL} CREATE DROPLETS] =================================
+echo -e [${MAGENTA}TERRAFORM:${NORMAL} CREATE DROPLETS] =================================
 ./ter_log.sh apply
-echo -en [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
-echo -en [${MAGENTA}SHELL:${NORMAL} KEY EXCHANGE] ========================================
+echo -e [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
+echo -e [${MAGENTA}SHELL:${NORMAL} KEY EXCHANGE] ========================================
 
 jenkins_ip="178.128.139.237"
 psql_ip="134.209.137.88"
 liferay_ip="178.128.142.117"
 
-echo \n
-echo -en ${GREEN}[$jenkins_ip]${NORMAL} Jenkins ip
-echo -en ${GREEN}[$psql_ip]${NORMAL} Postgresql ip
-echo -en ${GREEN}[$liferay_ip]${NORMAL} Liferay ip
-echo \n
+echo ""
+echo -e ${GREEN}[$jenkins_ip]${NORMAL} Jenkins ip
+echo -e ${GREEN}[$psql_ip]${NORMAL} Postgresql ip
+echo -e ${GREEN}[$liferay_ip]${NORMAL} Liferay ip
+echo ""
 
 rm ~/.ssh/known_hosts
 echo Connecting to root@$jenkins_ip - ssh-keygen
@@ -31,7 +31,7 @@ ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
 ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
-echo -en [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
+echo -e [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
 
 #scp ~/liferay_files.zip root@$jenkins_ip:~/
