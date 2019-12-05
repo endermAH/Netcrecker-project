@@ -23,6 +23,6 @@ resource "digitalocean_droplet" "liferay" {
 }
 
 resource "digitalocean_floating_ip_assignment" "liferay_fip" {
-  ip_address = "178.128.142.117"
+  ip_address = "134.209.137.44"
   droplet_id = digitalocean_droplet.liferay.id
 }

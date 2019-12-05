@@ -23,6 +23,6 @@ resource "digitalocean_droplet" "psql" {
 }
 
 resource "digitalocean_floating_ip_assignment" "psql_fip" {
-  ip_address = "134.209.137.88"
+  ip_address = "134.209.137.42"
   droplet_id = digitalocean_droplet.psql.id
 }
