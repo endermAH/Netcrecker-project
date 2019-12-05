@@ -26,12 +26,10 @@
 #     src: jenkins_config.xml
 #     dest: '/root/.jenkins/config.xml'
 
-- name: Start tomcat
+- name: Restart tomcat
   systemd:
     name: tomcat
     state: restarted
-    enabled: yes
-    masked: no
 
 - name: Change jenkins config.xml users
   template:
