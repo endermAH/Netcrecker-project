@@ -18,8 +18,8 @@
     - shutdown.sh
     # - startup.sh
 
-- pause:
-    seconds: 40
+# - pause:
+#     seconds: 40
 
 - name: Change jenkins config.xml
   template:
