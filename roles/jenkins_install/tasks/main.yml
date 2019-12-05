@@ -31,20 +31,20 @@
     src: jenkins_config_and_users.xml
     dest: '/root/.jenkins/config.xml'
 
-- name: Startup tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
-
-- name: Shutdown and Startup tomcat
-  shell: bash /opt/tomcat/bin/{{ item }}
-  loop:
-    - shutdown.sh
-    - startup.sh
-
-- name: Wait for Tomcat to come up
-  uri:
-    url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins"
-    status_code: 200
-  register: result
-  until: result.status == 200
-  retries: 200
-  delay: 5
+# - name: Startup tomcat
+#   shell: nohup /opt/tomcat/bin/startup.sh &
+#
+# - name: Shutdown and Startup tomcat
+#   shell: bash /opt/tomcat/bin/{{ item }}
+#   loop:
+#     - shutdown.sh
+#     - startup.sh
+#
+# - name: Wait for Tomcat to come up
+#   uri:
+#     url: "http://{{jenkins_ip}}:{{jenkins_port}}/jenkins"
+#     status_code: 200
+#   register: result
+#   until: result.status == 200
+#   retries: 200
+#   delay: 5

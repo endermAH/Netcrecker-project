@@ -8,14 +8,14 @@
 - name: Add User admin to jenkins
   shell: echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin","admin")' | java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ groovy =
 
-- name: Wait for Tomcat to come up
-  uri:
-    url: "http://127.0.0.1:8080/jenkins"
-    status_code: 200
-  register: result
-  until: result.status == 200
-  retries: 200
-  delay: 5
+# - name: Wait for Tomcat to come up
+#   uri:
+#     url: "http://127.0.0.1:8080/jenkins"
+#     status_code: 200
+#   register: result
+#   until: result.status == 200
+#   retries: 200
+#   delay: 5
 
 - name: Install jenkins plugins
   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
@@ -42,23 +42,23 @@
     - ansible # Ansible
     - ansicolor # AnsiColor
 
-- name: Startup tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
-
-- name: Shutdown and Startup tomcat
-  shell: bash /opt/tomcat/bin/{{ item }}
-  loop:
-    - shutdown.sh
-    - startup.sh
-
-- name: Wait for Tomcat to come up
-  uri:
-    url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins"
-    status_code: 200
-  register: result
-  until: result.status == 200
-  retries: 200
-  delay: 5
+# - name: Startup tomcat
+#   shell: nohup /opt/tomcat/bin/startup.sh &
+#
+# - name: Shutdown and Startup tomcat
+#   shell: bash /opt/tomcat/bin/{{ item }}
+#   loop:
+#     - shutdown.sh
+#     - startup.sh
+#
+# - name: Wait for Tomcat to come up
+#   uri:
+#     url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins"
+#     status_code: 200
+#   register: result
+#   until: result.status == 200
+#   retries: 200
+#   delay: 5
 
 - name: Add job to jenkins
   shell: "java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
