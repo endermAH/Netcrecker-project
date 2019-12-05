@@ -7,7 +7,7 @@
 - name: Download Jenkins
   get_url:
     url: "{{jenkins_url}}"
-    dest: /opt/tomcat/webapps
+    dest: /opt/tomcat/latest/webapps
 
 # - name: Startup tomcat
 #   shell: nohup /opt/tomcat/bin/startup.sh &
