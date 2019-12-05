@@ -1,8 +1,8 @@
 ---
 # tasks file for jenkins_install
 
-- name: Shutdown tomcat
-  shell: bash /opt/tomcat/bin/shutdown.sh
+# - name: Shutdown tomcat
+#   shell: bash /opt/tomcat/bin/shutdown.sh
 
 - name: Download Jenkins
   get_url:
