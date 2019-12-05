@@ -93,6 +93,7 @@
 - name: Start tomcat
   systemd:
     name: tomcat
+    state: started
     enabled: yes
     masked: no
 
@@ -121,8 +122,8 @@
     src: context_host.xml
     dest: '/opt/tomcat/webapps/host-manager/META-INF/context.xml'
 
-- name: start tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
+# - name: start tomcat
+#   shell: nohup /opt/tomcat/bin/startup.sh &
 
 - name: Tomcat /webapps ...
   file:

@@ -9,13 +9,13 @@
     url: "{{jenkins_url}}"
     dest: /opt/tomcat/webapps
 
-- name: Startup tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
-
-- name: Shutdown and Startup tomcat
-  shell: bash /opt/tomcat/bin/{{ item }}
-  loop:
-    - shutdown.sh
+# - name: Startup tomcat
+#   shell: nohup /opt/tomcat/bin/startup.sh &
+#
+# - name: Shutdown and Startup tomcat
+#   shell: bash /opt/tomcat/bin/{{ item }}
+#   loop:
+#     - shutdown.sh
     # - startup.sh
 
 # - pause:
@@ -26,13 +26,20 @@
 #     src: jenkins_config.xml
 #     dest: '/root/.jenkins/config.xml'
 
+- name: Start tomcat
+  systemd:
+    name: tomcat
+    state: restarted
+    enabled: yes
+    masked: no
+
 - name: Change jenkins config.xml users
   template:
     src: jenkins_config_and_users.xml
     dest: '/root/.jenkins/config.xml'
 
-- name: Startup tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
+# - name: Startup tomcat
+#   shell: nohup /opt/tomcat/bin/startup.sh &
 #
 # - name: Shutdown and Startup tomcat
 #   shell: bash /opt/tomcat/bin/{{ item }}
