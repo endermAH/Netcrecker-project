@@ -5,10 +5,10 @@
 #     url: "http://127.0.0.1:{{jenkins_port}}/jenkins/jnlpJars/jenkins-cli.jar"
 #     dest: "{{jenkins_path}}"
 
-- name: Copy Jenkins-CLI
-  copy:
-    src: /opt/tomcat/webapps/jenkins/WEB-INF/jenkins-cli.jar
-    dest: "{{jenkins_path}}"
+# - name: Copy Jenkins-CLI
+#   copy:
+#     src: /opt/tomcat/webapps/jenkins/WEB-INF/jenkins-cli.jar
+#     dest: "{{jenkins_path}}"
 
 - name: Add User admin to jenkins
   shell: echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin","admin")' | java -jar {{jenkins_path}}/jenkins-cli.jar -s http://127.0.0.1:{{jenkins_port}}/jenkins/ groovy =

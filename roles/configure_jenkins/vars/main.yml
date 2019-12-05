@@ -7,4 +7,4 @@
   jenkins_path: /root/.jenkins
   job_name: netcracker
   job_xml: export.xml
-  job_path: /root/Netcrecker-project
+  job_path: /opt/tomcat/webapps/jenkins/WEB-INF/jenkins-cli.jar
