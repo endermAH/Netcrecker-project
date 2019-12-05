@@ -17,7 +17,7 @@
     state: link
 - name: Change owner to Tomcat user
   file:
-    path: /opt/tomcat/latest
+    path: /opt/tomcat/apache-tomcat-9.0.27
     owner: tomcat
     group: tomcat
     recurse: yes
