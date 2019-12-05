@@ -25,7 +25,6 @@ ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
-ssh root@$jenkins_ip "cd Netcrecker-project && git checkout testi"
 
 scp ~/liferay_files.zip root@$jenkins_ip:~/
 ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
