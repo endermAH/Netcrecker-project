@@ -14,7 +14,7 @@ cd ./terraform && terraform destroy -auto-approve \
   -var "do_token=${DO_TOKEN}" \
   -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
   -var "pvt_key=${HOME}/.ssh/id_rsa" \
-  -var "ssh_fingerprint=${DO_FING}" &>> ./logs/terraform_destroy.log
+  -var "ssh_fingerprint=${DO_FING}" &>> ../logs/terraform_destroy.log
 
 echo ""
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} CREATING DROPLETS] =================================
@@ -24,7 +24,7 @@ terraform apply -auto-approve \
   -var "do_token=${DO_TOKEN}" \
   -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
   -var "pvt_key=${HOME}/.ssh/id_rsa" \
-  -var "ssh_fingerprint=${DO_FING}" &>> ./logs/terraform_apply.log
+  -var "ssh_fingerprint=${DO_FING}" &>> ../logs/terraform_apply.log
 
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
 echo ""
