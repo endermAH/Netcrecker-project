@@ -52,7 +52,7 @@ rm ./key
 echo -e [${MAGENTA}SHELL:${NORMAL} INSTALL DEPENDENCIES] ================================
 cd ..
 echo [*] Installing Jenkins dependencies
-ssh root@$jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git" &> ./logs/dependecies.log
+ssh root@$jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git" &>> ./logs/dependecies.log
 echo [*] Installing PostgreSQL dependencies
 ssh root@$psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git" &>> ./logs/dependecies.log
 echo [*] Installing Liferay dependencies
