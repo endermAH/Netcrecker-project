@@ -1,8 +1,0 @@
----
-- name: Install and configure tomcat
-  hosts: jenkins
-  gather_facts: false
-  remote_user: root
-
-  roles:
-    - tomcat_install

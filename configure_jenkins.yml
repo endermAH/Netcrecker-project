@@ -1,8 +1,0 @@
----
-- name: Install jenkins plugins
-  hosts: jenkins
-  gather_facts: no
-  remote_user: root
-
-  roles:
-    - configure_jenkins
