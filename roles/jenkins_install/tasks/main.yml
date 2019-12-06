@@ -1,44 +1,34 @@
 ---
 # tasks file for jenkins_install
 
-- name: Shutdown tomcat
-  shell: bash /opt/tomcat/bin/shutdown.sh
-
 - name: Download Jenkins
   get_url:
     url: "{{jenkins_url}}"
     dest: /opt/tomcat/webapps
 
-- name: Startup tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
+- name: Start tomcat
+  systemd:
+    state: started
+    name: tomcat
 
-- name: Shutdown and Startup tomcat
-  shell: bash /opt/tomcat/bin/{{ item }}
-  loop:
-    - shutdown.sh
-    - startup.sh
-
-- pause:
-    seconds: 40
-
-- name: Change jenkins config.xml
-  template:
-    src: jenkins_config.xml
-    dest: '/root/.jenkins/config.xml'
+- name: Wait for Tomcat to come up
+  uri:
+    url: "http://{{jenkins_ip}}:{{jenkins_port}}/"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 200
+  delay: 5
 
 - name: Change jenkins config.xml users
   template:
     src: jenkins_config_and_users.xml
     dest: '/root/.jenkins/config.xml'
 
-- name: Startup tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
-
-- name: Shutdown and Startup tomcat
-  shell: bash /opt/tomcat/bin/{{ item }}
-  loop:
-    - shutdown.sh
-    - startup.sh
+- name: Restart tomcat
+  systemd:
+    state: restarted
+    name: tomcat
 
 - name: Wait for Tomcat to come up
   uri:
