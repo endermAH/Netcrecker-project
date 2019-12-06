@@ -8,20 +8,23 @@ DO_FING=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}' | cut -c 5-
 DO_TOKEN="98fcb6662e0ecdef1501f564390a5f42b9cbefe7689ca99a0d091b3b117c72c6"
 
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} DESTROYING INFRASTRUCTURE] =======================
+echo You can see progress in ./logs/terraform_destroy.log
 
 cd ./terraform && terraform destroy -auto-approve \
   -var "do_token=${DO_TOKEN}" \
   -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
   -var "pvt_key=${HOME}/.ssh/id_rsa" \
-  -var "ssh_fingerprint=${DO_FING}"
+  -var "ssh_fingerprint=${DO_FING}" &>> ./logs/terraform_destroy.log
 
+echo ""
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} CREATING DROPLETS] =================================
+echo You can see progress in ./logs/terraform_apply.log
 
 terraform apply -auto-approve \
   -var "do_token=${DO_TOKEN}" \
   -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
   -var "pvt_key=${HOME}/.ssh/id_rsa" \
-  -var "ssh_fingerprint=${DO_FING}"
+  -var "ssh_fingerprint=${DO_FING}" &>> ./logs/terraform_apply.log
 
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
 echo ""
@@ -49,6 +52,7 @@ ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
 ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
+echo ""
 echo -e [${MAGENTA}SHELL:${NORMAL} INSTALL DEPENDENCIES] ================================
 cd ..
 echo [*] Installing Jenkins dependencies
@@ -58,7 +62,8 @@ ssh root@$psql_ip "apt-get update -y && apt-get install -y python python3 python
 echo [*] Installing Liferay dependencies
 ssh root@$liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip" &>> ./logs/dependencies.log
 echo ""
-
+echo You can check installation log in ./logs/dependencies.log
+echo ""
 echo -e [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
 
@@ -69,4 +74,4 @@ ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/N
 
 echo ""
 echo -e [${MAGENTA}JENKINS:${NORMAL} DEPLOY POSTGRESQL AND LIFERAY] =====================
-echo -e Go to ${jenkins_ip}:8080 and check deployment
+echo -e Go to ${GRENN}${jenkins_ip}:8080${NORMAL} and check deployment progress!
