@@ -14,6 +14,11 @@ resource "digitalocean_droplet" "psql" {
     private_key = file(var.pvt_key)
     timeout = "2m"
   }
+  provisioner "remote-exec" {
+    inline = [
+      "echo Started",
+    ]
+  }
 }
 
 resource "digitalocean_floating_ip_assignment" "psql_fip" {
