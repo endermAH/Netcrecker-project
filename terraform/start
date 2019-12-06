@@ -7,6 +7,7 @@ MAGENTA='\033[0;35m'
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} CREATE DROPLETS] =================================
 ./ter_log.sh apply
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
+echo ""
 echo -e [${MAGENTA}SHELL:${NORMAL} KEY EXCHANGE] ========================================
 
 jenkins_ip="178.128.139.237"
@@ -32,9 +33,9 @@ ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
 echo -e [${MAGENTA}SHELL:${NORMAL} INSTALL DEPENDENCIES] ================================
-ssh root@jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
-ssh root@psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
-ssh root@liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip"
+ssh root@$jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
+ssh root@$psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
+ssh root@$liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip"
 
 echo -e [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
