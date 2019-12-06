@@ -4,6 +4,8 @@ NORMAL='\033[0m'
 GREEN='\033[0;32m'
 MAGENTA='\033[0;35m'
 
+echo -e [${MAGENTA}TERRAFORM:${NORMAL} DESTROYING INFRASTRUCTURE] =======================
+./ter_log.sh destroy
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} CREATE DROPLETS] =================================
 ./ter_log.sh apply
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
