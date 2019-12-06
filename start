@@ -4,10 +4,25 @@ NORMAL='\033[0m'
 GREEN='\033[0;32m'
 MAGENTA='\033[0;35m'
 
+DO_FING=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}' | cut -c 5-)
+DO_TOKEN="98fcb6662e0ecdef1501f564390a5f42b9cbefe7689ca99a0d091b3b117c72c6"
+
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} DESTROYING INFRASTRUCTURE] =======================
-./terraform/ter_log.sh destroy
+
+terraform destroy -auto-approve \
+  -var "do_token=${DO_TOKEN}" \
+  -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
+  -var "pvt_key=${HOME}/.ssh/id_rsa" \
+  -var "ssh_fingerprint=${DO_FING}"
+
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} CREATING DROPLETS] =================================
-./terraform/ter_log.sh apply
+
+terraform apply -auto-approve \
+  -var "do_token=${DO_TOKEN}" \
+  -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
+  -var "pvt_key=${HOME}/.ssh/id_rsa" \
+  -var "ssh_fingerprint=${DO_FING}"
+
 echo -e [${MAGENTA}TERRAFORM:${NORMAL} FINISHED WITH EXIT CODE $?] =======================
 echo ""
 echo -e [${MAGENTA}SHELL:${NORMAL} KEY EXCHANGING] ========================================
