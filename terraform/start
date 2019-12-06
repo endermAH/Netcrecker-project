@@ -31,21 +31,18 @@ ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
 ssh root@$liferay_ip "echo $KEY >> ~/.ssh/authorized_keys"
 rm ./key
 
+echo -e [${MAGENTA}SHELL:${NORMAL} INSTALL DEPENDENCIES] ================================
+ssh root@jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
+ssh root@psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
+ssh root@liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip"
+
 echo -e [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
 
 #scp ~/liferay_files.zip root@$jenkins_ip:~/
 #ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
-# install dependences
-ssh root@jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
-ssh root@psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git"
-ssh root@liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip"
-
 ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins-vps-playbook.yml"
-# ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/psql-vps-playbook.yml"
-# ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/liferay-vps-playbook.yml"
-# ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/jenkins_install.yml"
-# ssh root@$jenkins_ip "ansible-playbook -i ~/Netcrecker-project/inventory.ini ~/Netcrecker-project/configure_jenkins.yml"
 
-# ssh root@$jenkins_ip "curl http://127.0.0.1:8080/jenkins/job/netcracker/build?token=START_PIPELINE "
+echo -e [${MAGENTA}JENKINS:${NORMAL} DEPLOY POSTGRESQL AND LIFERAY] =====================
+echo -e Go to ${jenkins_ip}:8080 and check deployment
