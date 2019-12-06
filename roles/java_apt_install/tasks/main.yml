@@ -1,5 +1,4 @@
-- name: Update repositories cache and install "java-{{ java_vaersion }}" package
+- name: Update repositories cache and install java package
   apt:
-#    name: "openjdk-{{ java_vaersion }}-jdk"
     name: "default-jre"
     update_cache: yes
