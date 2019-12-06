@@ -36,11 +36,11 @@ rm ./key
 
 echo -e [${MAGENTA}SHELL:${NORMAL} INSTALL DEPENDENCIES] ================================
 echo [*] Installing Jenkins dependencies
-ssh root@$jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git" >> ./logs/dependecies.log
+ssh root@$jenkins_ip "apt-get update -y && apt-get install -y ansible python python3 python-pip python-yaml python-jinja2 python-httplib2 git" &>> ./logs/dependecies.log
 echo [*] Installing PostgreSQL dependencies
-ssh root@$psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git" >> ./logs/dependecies.log
+ssh root@$psql_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 git" &>> ./logs/dependecies.log
 echo [*] Installing Liferay dependencies
-ssh root@$liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip" >> ./logs/dependecies.log
+ssh root@$liferay_ip "apt-get update -y && apt-get install -y python python3 python-pip python-yaml python-jinja2 python-httplib2 python-paramiko python-pkg-resources git unzip" &>> ./logs/dependecies.log
 echo ""
 
 echo -e [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
