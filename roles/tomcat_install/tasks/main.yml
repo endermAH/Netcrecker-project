@@ -81,27 +81,40 @@
     - RELEASE-NOTES
     - RUNNING.txt
 
+- name: Create setenv.sh
+  template:
+    src: setenv
+    dest: "/opt/tomcat/bin/setenv.sh"
+
+- name: Change group setenv.sh
+  file:
+    path: "/opt/tomcat/bin/setenv.sh"
+    state: file
+    owner: root
+    group: tomcat
+    mode: g+x
+
+- name: Change context.xml
+  template:
+    src: tomcat_context.xml
+    dest: "/opt/tomcat/conf/context.xml"
+
 - name: Configure tomcat.service
   template:
     src: tomcat.service
     dest: "/etc/systemd/system/"
 
-- name: Configure Service tomcat
+- name: Reload service
   systemd:
     daemon_reload: yes
 
-- name: Start tomcat
+- name: Service: start tomcat
   systemd:
     name: tomcat
     enabled: yes
     masked: no
 
 - name: Configure Tomcat users
-  template:
-    src: tomcat-users.xml
-    dest: '/opt/tomcat/conf/tomcat-users.xml'
-
-- name: Change tomcat users
   template:
     src: tomcat-users.xml
     dest: '/opt/tomcat/conf/tomcat-users.xml'
@@ -120,9 +133,6 @@
   template:
     src: context_host.xml
     dest: '/opt/tomcat/webapps/host-manager/META-INF/context.xml'
-
-- name: start tomcat
-  shell: nohup /opt/tomcat/bin/startup.sh &
 
 - name: Tomcat /webapps ...
   file:
