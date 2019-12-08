@@ -1,9 +1,9 @@
 ---
 # vars file for jenkins_install
 
-[Download]
-  jenkins_url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+#[Download]
+jenkins_url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
 
-[Network]
-  jenkins_ip: 127.0.0.1
-  jenkins_port: 8080
+#[Network]
+jenkins_ip: 127.0.0.1
+jenkins_port: 8080
