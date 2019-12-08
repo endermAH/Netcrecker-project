@@ -22,6 +22,10 @@
   retries: 200
   delay: 5
 
+- name: Wait for Jenkins
+  pause:
+      seconds: 90
+
 - name: Install jenkins plugins
   shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
   loop:
