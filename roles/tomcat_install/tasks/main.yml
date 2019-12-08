@@ -108,7 +108,7 @@
   systemd:
     daemon_reload: yes
 
-- name: Service: start tomcat
+- name: Start Tomcat service
   systemd:
     name: tomcat
     enabled: yes
