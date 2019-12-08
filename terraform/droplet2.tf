@@ -2,7 +2,7 @@ resource "digitalocean_droplet" "jenkins" {
   image = "ubuntu-18-04-x64"
   name = "jenkins"
   region = "ams3"
-  size = "s-1vcpu-1gb"
+  size = "s-1vcpu-3gb"
   private_networking = true
   ssh_keys = [
     var.ssh_fingerprint
