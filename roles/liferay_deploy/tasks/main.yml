@@ -13,11 +13,6 @@
     remote_src: yes
     src: "{{ liferay_download_path }}/liferay-ce-portal-7.2.1-ga2-20191111141448326.war"
     dest: /opt/wildfly/standalone/deployments/ROOT.war/
-# - name: Cp liferay war
-#   copy:
-#     remote_src: true
-#     src: "/root/liferay/liferay-ce-portal-7.2.0-ga1-20190531153709761.war"
-#     dest: /opt/wildfly/standalone/deployments/ROOT.war/
 - name: Create ROOT.war.dodeploy
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy
