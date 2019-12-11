@@ -66,7 +66,7 @@ echo You can check installation log in ./logs/dependencies.log
 echo ""
 echo -e [${MAGENTA}SHELL:${NORMAL} DEPLOY JENKINS] ======================================
 ssh root@$jenkins_ip "git clone https://github.com/endermAH/Netcrecker-project.git"
-
+ssh root@$jenkins_ip "cd Netcrecker-project && git checkout fix"
 #scp ~/liferay_files.zip root@$jenkins_ip:~/
 #ssh root@$jenkins_ip "unzip ~/liferay_files.zip -d ~/"
 
