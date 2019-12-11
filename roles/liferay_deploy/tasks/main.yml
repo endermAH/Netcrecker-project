@@ -13,6 +13,10 @@
     remote_src: yes
     src: "{{ liferay_download_path }}/liferay-ce-portal-7.2.1-ga2-20191111141448326.war"
     dest: /opt/wildfly/standalone/deployments/ROOT.war/
+- name: Setup wizard
+  template:
+    src: portal-setup-wizard.properties
+    dest: /opt/portal-setup-wizard.properties
 - name: Create ROOT.war.dodeploy
   file:
     path: /opt/wildfly/standalone/deployments/ROOT.war.dodeploy

@@ -27,7 +27,11 @@
       seconds: 90
 
 - name: Install jenkins plugins
-  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
+  #shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
+  jenkins_plugin:
+    name: "{{ item }}"
+    url: "http://127.0.0.1:8080/jenkins"
+    timeout: 1000
   loop:
     - cloudbees-folder # Folders
     - antisamy-markup-formatter # OWASP Markup Formatter

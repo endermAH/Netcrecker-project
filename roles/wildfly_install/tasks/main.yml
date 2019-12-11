@@ -3,11 +3,11 @@
 - name: Download & Unzip WildFly
   unarchive:
     remote_src: yes
-    src: https://download.jboss.org/wildfly/17.0.1.Final/wildfly-17.0.1.Final.tar.gz
+    src: "{{ download_link }}"
     dest: /opt
 - name: Create a symbolic link
   file:
-    src: /opt/wildfly-17.0.1.Final
+    src: /opt/wildfly-{{ wildfly_version }}.Final
     dest: /opt/wildfly
     state: link
 - name: Replacement to <any-address\> [1]
@@ -21,4 +21,4 @@
     regexp: '<inet-address'
     line: '            <any-address/>'
 - name: Add admin user to WildFly
-  shell: /opt/wildfly/bin/add-user.sh root toor
+  shell: "/opt/wildfly/bin/add-user.sh {{admin_username}} {{admin_password}}"

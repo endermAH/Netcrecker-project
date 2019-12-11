@@ -3,7 +3,9 @@
     - use_remote_links == true
   block:
     - name: Create download directories
-      shell: mkdir -p ~/liferay_files/{{ item }}
+      file:
+        path: ~/liferay_files/{{ item }}
+        state: directory
       with_items:
         - liferay
         - undertow

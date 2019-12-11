@@ -14,9 +14,18 @@
     - /opt/wildfly/modules/com/liferay/portal
     - /opt/wildfly/modules/com/liferay/portal/main
 - name: Remove all files
-  shell: rm -rf /opt/wildfly/modules/com/liferay/portal/main/*
+  file:
+    path: /opt/wildfly/modules/com/liferay/portal/main/
+    state: absent
+- name: Create directory /opt/wildfly/modules/com/liferay/portal/main
+  file:
+    path: /opt/wildfly/modules/com/liferay/portal/main
+    state: directory
 - name: Unzip dependences
-  shell: "unzip {{ liferay_download_path }}/liferay-ce-portal-dependencies*.zip -d /opt/wildfly/modules/com/liferay/portal/main"
+  unarchive:
+    remote_src: yes
+    src: "{{ liferay_download_path }}/liferay-ce-portal-dependencies*.zip"
+    dest: /opt/wildfly/modules/com/liferay/portal/main
 - name: Move dependences to main
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-*
 - name: Create folder for PSQL driver

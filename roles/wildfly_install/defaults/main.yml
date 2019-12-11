@@ -1,0 +1,5 @@
+---
+wildfly_version: "17.0.1"
+download_link: "https://download.jboss.org/wildfly/17.0.1.Final/wildfly-{{ wildfly_version }}.Final.tar.gz"
+admin_username: root
+admin_password: toor
