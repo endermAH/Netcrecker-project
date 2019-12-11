@@ -24,7 +24,7 @@
 - name: Unzip dependences
   unarchive:
     remote_src: yes
-    src: "{{ liferay_download_path }}/liferay-ce-portal-dependencies*.zip"
+    src: "{{ liferay_download_path }}/liferay-ce-portal-dependencies-7.2.1-ga2-20191111141448326.zip"
     dest: /opt/wildfly/modules/com/liferay/portal/main
 - name: Move dependences to main
   shell: mv /opt/wildfly/modules/com/liferay/portal/main/l*/* /opt/wildfly/modules/com/liferay/portal/main && rmdir /opt/wildfly/modules/com/liferay/portal/main/liferay-ce-portal-dependencies-*
