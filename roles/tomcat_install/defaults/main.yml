@@ -3,7 +3,6 @@
 
 #[Download]
 req_tomcat_ver: 9.0.29
-tomcat_url: https://www-eu.apache.org/dist/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
-
+tomcat_url: http://apache-mirror.rbc.ru/pub/apache/tomcat/tomcat-{{req_tomcat_ver.split('.')[0]}}/v{{req_tomcat_ver}}/bin/apache-tomcat-{{req_tomcat_ver}}.tar.gz
 #[Network]
 tomcat_port: 8080

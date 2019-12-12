@@ -44,4 +44,3 @@ them. You will also need to set the passwords to something appropriate.
 <user username="role1" password="<must-be-changed>" roles="role1"/>
 -->
 </tomcat-users>
-

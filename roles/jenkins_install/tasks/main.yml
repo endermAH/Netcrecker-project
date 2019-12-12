@@ -1,10 +1,10 @@
 ---
 # tasks file for jenkins_install
-
 - name: Download Jenkins
+  become-user: tomcat
   get_url:
     url: "{{jenkins_url}}"
-    dest: /opt/tomcat/webapps
+    dest: /opt/tomcat/latest/webapps
 
 - name: Start tomcat
   systemd:
@@ -23,7 +23,7 @@
 - name: Change jenkins config.xml users
   template:
     src: jenkins_config_and_users.xml
-    dest: '/root/.jenkins/config.xml'
+    dest: '/opt/tomcat/.jenkins/config.xml'
 
 - name: Restart tomcat
   systemd:

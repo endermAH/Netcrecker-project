@@ -22,36 +22,13 @@
   retries: 200
   delay: 5
 
-- name: Wait for Jenkins
-  pause:
-      seconds: 90
-
 - name: Install jenkins plugins
-  #shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
-  jenkins_plugin:
-    name: "{{ item }}"
-    url: "http://127.0.0.1:8080/jenkins"
-    timeout: 1000
+  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ install-plugin {{ item }}"
   loop:
-    - cloudbees-folder # Folders
-    - antisamy-markup-formatter # OWASP Markup Formatter
-    - build-timeout # Build Timeout
-    - credentials-binding # Credentials Binding
-    - timestamper # Timestamper
     - ws-cleanup # Workspace Cleanup
-    - ant # Ant
-    - gradle # Gradle
     - workflow-aggregator # Pipeline
-    - github-branch-source # GitHub Branch Source
-    - pipeline-github-lib # Pipeline: GitHub Groovy Libraries
     - pipeline-stage-view # Pipeline: Stage View
     - git # Git
-    - subversion # Subversion
-    - ssh-slaves # SSH Slaves
-    - matrix-auth # Matrix Authorization Strategy
-    - pam-auth # PAM Authentication
-    - ldap # LDAP
-    - email-ext # Email Extension
     - ansible # Ansible
     - ansicolor # AnsiColor
 
@@ -70,7 +47,9 @@
   delay: 5
 
 - name: Add job to jenkins
-  shell: "java -jar /root/.jenkins/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
+  shell: "java -jar {{jenkins_path}}/jenkins-cli.jar -s http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/ create-job netcracker < /root/Netcrecker-project/export.xml"
 
 - name: Start pipeline
-  shell: curl http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE
+  uri:
+    url: "http://{{jenkins_ip_external}}:{{jenkins_port}}/jenkins/job/{{job_name}}/build?token=START_PIPELINE"
+    status_code: 201

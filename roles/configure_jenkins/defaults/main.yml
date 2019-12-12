@@ -7,7 +7,7 @@ jenkins_ip_external: 127.0.0.1
 jenkins_port: 8080
 
 #[Folder]
-jenkins_path: /root/.jenkins
+jenkins_path: /opt/tomcat/.jenkins
 job_name: netcracker
 job_xml: export.xml
 job_path: /root/Netcrecker-project
