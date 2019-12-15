@@ -46,7 +46,7 @@ echo Connecting to root@$jenkins_ip - ssh-keygen
 ssh root@$jenkins_ip "echo '    StrictHostKeyChecking no' >> /etc/ssh/ssh_config"
 ssh root@$jenkins_ip "ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ''"
 scp root@$jenkins_ip:~/.ssh/id_rsa.pub ./key
-ssh root@$jenkins_ip "mkdir -p /opt/tomcat/.ssh && cp ~/.ssh/id_rsa.pub /opt/tomcat/.ssh/id_rsa.pub && cp ~/.ssh/id_rsa /opt/tomcat/.ssh/id_rsa"
+ssh root@$jenkins_ip "mkdir -p /opt/tomcat/latest/.ssh && cp ~/.ssh/id_rsa.pub /opt/tomcat/latest/.ssh/id_rsa.pub && cp ~/.ssh/id_rsa /opt/tomcat/latest/.ssh/id_rsa"
 ssh root@$jenkins_ip "cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys"
 KEY=$(cat ./key)
 ssh root@$psql_ip "echo $KEY >> ~/.ssh/authorized_keys"
