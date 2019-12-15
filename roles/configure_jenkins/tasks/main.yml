@@ -33,25 +33,10 @@
     url: "http://127.0.0.1:8080/jenkins"
     timeout: 1000
   loop:
-    - cloudbees-folder # Folders
-    - antisamy-markup-formatter # OWASP Markup Formatter
-    - build-timeout # Build Timeout
-    - credentials-binding # Credentials Binding
-    - timestamper # Timestamper
     - ws-cleanup # Workspace Cleanup
-    - ant # Ant
-    - gradle # Gradle
     - workflow-aggregator # Pipeline
-    - github-branch-source # GitHub Branch Source
-    - pipeline-github-lib # Pipeline: GitHub Groovy Libraries
     - pipeline-stage-view # Pipeline: Stage View
     - git # Git
-    - subversion # Subversion
-    - ssh-slaves # SSH Slaves
-    - matrix-auth # Matrix Authorization Strategy
-    - pam-auth # PAM Authentication
-    - ldap # LDAP
-    - email-ext # Email Extension
     - ansible # Ansible
     - ansicolor # AnsiColor
 
