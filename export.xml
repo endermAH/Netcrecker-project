@@ -34,8 +34,8 @@
           steps {
               ansiColor(&apos;exterm&apos;) {
                   ansiblePlaybook(
-                      playbook: &apos;/root/.jenkins/workspace/netcracker/psql-vps-playbook.yml&apos;,
-                      inventory: &apos;/root/.jenkins/workspace/netcracker/inventory.ini&apos;,
+                      playbook: &apos;/opt/tomcat/.jenkins/workspace/netcracker/psql-vps-playbook.yml&apos;,
+                      inventory: &apos;/opt/tomcat/.jenkins/workspace/netcracker/inventory.ini&apos;,
                       colorized: true
                   )
               }
@@ -46,8 +46,8 @@
           steps {
               ansiColor(&apos;exterm&apos;) {
                   ansiblePlaybook(
-                      playbook: &apos;/root/.jenkins/workspace/netcracker/liferay-vps-playbook.yml&apos;,
-                      inventory: &apos;/root/.jenkins/workspace/netcracker/inventory.ini&apos;,
+                      playbook: &apos;/opt/tomcat/.jenkins/workspace/netcracker/liferay-vps-playbook.yml&apos;,
+                      inventory: &apos;/opt/tomcat/.jenkins/workspace/netcracker/inventory.ini&apos;,
                       colorized: true
                   )
               }
