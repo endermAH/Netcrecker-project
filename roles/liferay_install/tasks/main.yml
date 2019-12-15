@@ -49,8 +49,15 @@
     line: "{{ item }}"
   with_items:
     "{{ module_xml_list }}"
+- name: Clean OSGI folder
+  file:
+    path: /opt/osgi/
+    state: absent
 - name: Unzip OSGi
-  shell: "rm -rf /opt/osgi/* && unzip {{ liferay_download_path }}/liferay-ce-portal-osgi-*.zip -d /opt/osgi"
+  unarchive:
+    remote_src: yes
+    src: "{{ liferay_download_path }}/liferay-ce-portal-osgi-7.2.1-ga2-20191111141448326.zip"
+    dest: /opt/osgi
 - name: Move osgi to osgi
   shell: mv /opt/osgi/liferay-ce-portal-osgi-*/* /opt/osgi && rm -rf /opt/osgi/liferay-ce-portal-osgi-*
 - name: Modify standalone.xml
