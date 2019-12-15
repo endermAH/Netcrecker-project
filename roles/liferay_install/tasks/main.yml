@@ -53,6 +53,10 @@
   file:
     path: /opt/osgi/
     state: absent
+- name: Create OSGI folder
+  file:
+    path: /opt/osgi
+    state: directory
 - name: Unzip OSGi
   unarchive:
     remote_src: yes
