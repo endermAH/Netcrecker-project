@@ -7,3 +7,7 @@ jenkins_url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
 #[Network]
 jenkins_ip: 127.0.0.1
 jenkins_port: 8080
+
+#[Folder]
+tomcat_path: /opt/tomcat
+jenkins_path: /root/.jenkins

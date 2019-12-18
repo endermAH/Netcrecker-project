@@ -11,3 +11,7 @@ jenkins_path: /root/.jenkins
 job_name: netcracker
 job_xml: export.xml
 job_path: /root/Netcrecker-project
+
+#[User]
+user_name: admin
+user_password: admin

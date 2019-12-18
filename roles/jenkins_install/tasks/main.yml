@@ -4,7 +4,7 @@
 - name: Download Jenkins
   get_url:
     url: "{{jenkins_url}}"
-    dest: /opt/tomcat/webapps
+    dest: {{tomcat_path}}/webapps
 
 - name: Start tomcat
   systemd:
@@ -23,7 +23,7 @@
 - name: Change jenkins config.xml users
   template:
     src: jenkins_config_and_users.xml
-    dest: '/root/.jenkins/config.xml'
+    dest: '{{jenkins_path}}/config.xml'
 
 - name: Restart tomcat
   systemd:

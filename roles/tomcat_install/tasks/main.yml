@@ -19,11 +19,11 @@
     system: no
     shell: /bin/bash
     createhome: yes
-    home: "/opt/tomcat"
+    home: "{{tomcat_path}}"
 
 - name: Change own directory tomcat
   file:
-    path: "/opt/tomcat"
+    path: "{{tomcat_path}}"
     state: directory
     owner: root
 
@@ -39,24 +39,24 @@
     remote_src: yes
 
 - name: Renaming tomcat home
-  shell: mv /opt/apache-tomcat-{{req_tomcat_ver}}/* /opt/tomcat
+  shell: mv /opt/apache-tomcat-{{req_tomcat_ver}}/* {{tomcat_path}}
 
 - name: Change mode recurse conf
   file:
-    path: "/opt/tomcat/conf"
+    path: "{{tomcat_path}}/conf"
     state: directory
     recurse: yes
     mode: g+r
 
 - name: Change mode conf
   file:
-    path: "/opt/tomcat/conf"
+    path: "{{tomcat_path}}/conf"
     state: directory
     mode: g+x
 
 - name: Change group directory tomcat
   file:
-    path: "/opt/tomcat/{{ item }}"
+    path: "{{tomcat_path}}/{{ item }}"
     state: directory
     recurse: yes
     owner: root
@@ -68,7 +68,7 @@
 
 - name: Change group file tomcat
   file:
-    path: "/opt/tomcat/{{ item }}"
+    path: "{{tomcat_path}}/{{ item }}"
     state: file
     owner: root
     group: tomcat
@@ -84,11 +84,11 @@
 - name: Create setenv.sh
   template:
     src: setenv
-    dest: "/opt/tomcat/bin/setenv.sh"
+    dest: "{{tomcat_path}}/bin/setenv.sh"
 
 - name: Change group setenv.sh
   file:
-    path: "/opt/tomcat/bin/setenv.sh"
+    path: "{{tomcat_path}}/bin/setenv.sh"
     state: file
     owner: root
     group: tomcat
@@ -97,7 +97,7 @@
 - name: Change context.xml
   template:
     src: tomcat_context.xml
-    dest: "/opt/tomcat/conf/context.xml"
+    dest: "{{tomcat_path}}/conf/context.xml"
 
 - name: Configure tomcat.service
   template:
@@ -117,26 +117,26 @@
 - name: Configure Tomcat users
   template:
     src: tomcat-users.xml
-    dest: '/opt/tomcat/conf/tomcat-users.xml'
+    dest: '{{tomcat_path}}/conf/tomcat-users.xml'
 
 - name: Change tomcat port
   template:
     src: server.xml
-    dest: '/opt/tomcat/conf/server.xml'
+    dest: '{{tomcat_path}}/conf/server.xml'
 
 - name: Change manager context
   template:
     src: context_stock.xml
-    dest: '/opt/tomcat/webapps/manager/META-INF/context.xml'
+    dest: '{{tomcat_path}}/webapps/manager/META-INF/context.xml'
 
 - name: Change host-manager context
   template:
     src: context_host.xml
-    dest: '/opt/tomcat/webapps/host-manager/META-INF/context.xml'
+    dest: '{{tomcat_path}}/webapps/host-manager/META-INF/context.xml'
 
 - name: Tomcat /webapps ...
   file:
-    path: "/opt/tomcat/{{ item }}"
+    path: "{{tomcat_path}}/{{ item }}"
     state: directory
     recurse: yes
     owner: tomcat
