@@ -1,5 +1,5 @@
 resource "digitalocean_droplet" "psql" {
-  image = "ubuntu-18-04-x64"
+  image = "ubuntu-18-04-x64" # bug description
   name = "psql"
   region = "ams3"
   size = "s-1vcpu-1gb"
